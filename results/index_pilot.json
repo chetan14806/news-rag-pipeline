@@ -1,0 +1,12 @@
+{
+  "run_id": "2026-10-17T123529563940-0000",
+  "started_at": "2026-10-17T12:35:29.563940+00:00",
+  "written_articles": 5,
+  "skipped_articles": 0,
+  "embedded_chunks": 40,
+  "removed_chunks": 0,
+  "status": "complete",
+  "articles": 5,
+  "chunks": 40,
+  "finished_at": "2026-10-17T12:36:20.907737+00:00"
+}

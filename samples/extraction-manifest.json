@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-10-18T09:21:43.018543+00:00",
+  "records": {
+    "a728615cf382868156c98b14b062b38ae84b728767d6260cdb198a227c377db3": {
+      "path": "records/a728615cf382868156c98b14b062b38ae84b728767d6260cdb198a227c377db3.json",
+      "fingerprint": "f598acb043056ea775b0c1149e4b22a92346726357a6888df71cad9cf0977d88",
+      "sha256": "2471a4bf24b9476faca6056e44cf0a482d87cc1080d14822a94c380f16158bee"
+    },
+    "d65180ebd4815bd74bdc377b9dc4a68541ab5cdcc44372896cfa85435e0b98fa": {
+      "path": "records/d65180ebd4815bd74bdc377b9dc4a68541ab5cdcc44372896cfa85435e0b98fa.json",
+      "fingerprint": "8f86647e3e11638b3cce87bbbb0846a1765bac822b36da3e45b5c7a29275a8aa",
+      "sha256": "2a359bb4b5c1c2d4aa8d918652d64404deb6d716e610699b993881886c44327c"
+    },
+    "1e81e4d564d516ba349aa25c2db52164881160111270bbafed26502c28fbb136": {
+      "path": "records/1e81e4d564d516ba349aa25c2db52164881160111270bbafed26502c28fbb136.json",
+      "fingerprint": "ae77c656e89fecc7f550c508dc08394b965c4e655f96900f91202ee0f23c7556",
+      "sha256": "31e37201184aa5bc2c1eb0d0becc238093be600b6f2ad4030ddeef6a4d74160e"
+    },
+    "c16f5d69843ae23174a96c3f2bb17acf73c89de674cf54ee662d713c105dc7a3": {
+      "path": "records/c16f5d69843ae23174a96c3f2bb17acf73c89de674cf54ee662d713c105dc7a3.json",
+      "fingerprint": "dda547a1a763ba8fc87a238ae31ce719a50b19714c90b4ad1d26cb4c4cf58dea",
+      "sha256": "deb49be5216fdff6681d561dbf0f5294a3aca0c5228728de5e25377a14a61e43"
+    },
+    "2bf2d452ef6073fa3233c9d90bc12aadeddd04af0ef6951a0ee8522fc3b2a391": {
+      "path": "records/2bf2d452ef6073fa3233c9d90bc12aadeddd04af0ef6951a0ee8522fc3b2a391.json",
+      "fingerprint": "5eff62c5a27eaaf529f879069e572b6861b8df9a6ba8f59e385c780078a4c4fb",
+      "sha256": "6c1ac7b519c785343fc20244a02bb33821ef16d89ebe797be2f8399c31405396"
+    }
+  },
+  "complete_scan": true,
+  "run_id": "2026-10-18T092055569075-0000"
+}

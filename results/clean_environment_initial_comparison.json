@@ -1,0 +1,102 @@
+{
+  "started_at": "2026-10-17T16:56:19.961140+00:00",
+  "passed": false,
+  "scope": "Fresh venv on the same Windows host; saved original HTML and verified model assets reused. No new publisher scrape.",
+  "workspace": "D:\\projects\\Zylabs_assignmnet\\tmp\\submission-check\\project",
+  "python": "D:\\projects\\Zylabs_assignmnet\\tmp\\submission-check\\.venv\\Scripts\\python.exe",
+  "steps": [
+    {
+      "name": "dependencies",
+      "arguments": [
+        "-m",
+        "pip",
+        "check"
+      ],
+      "exit_code": 0,
+      "seconds": 5.77,
+      "log": "clean_environment_dependencies.txt"
+    },
+    {
+      "name": "tests",
+      "arguments": [
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exit_code": 0,
+      "seconds": 49.98,
+      "log": "clean_environment_tests.txt"
+    },
+    {
+      "name": "extraction",
+      "arguments": [
+        "extract.py"
+      ],
+      "exit_code": 0,
+      "seconds": 536.42,
+      "log": "clean_environment_extraction.txt"
+    },
+    {
+      "name": "extraction_audit",
+      "arguments": [
+        "tools/audit_extraction.py"
+      ],
+      "exit_code": 0,
+      "seconds": 20.64,
+      "log": "clean_environment_extraction_audit.txt"
+    },
+    {
+      "name": "index",
+      "arguments": [
+        "index.py"
+      ],
+      "exit_code": 0,
+      "seconds": 98.8,
+      "log": "clean_environment_index.txt"
+    },
+    {
+      "name": "index_audit",
+      "arguments": [
+        "tools/audit_index.py",
+        "--rerun"
+      ],
+      "exit_code": 0,
+      "seconds": 94.47,
+      "log": "clean_environment_index_audit.txt"
+    },
+    {
+      "name": "queries",
+      "arguments": [
+        "tools/evaluate_queries.py"
+      ],
+      "exit_code": 0,
+      "seconds": 112.77,
+      "log": "clean_environment_queries.txt"
+    }
+  ],
+  "finished_at": "2026-10-17T17:11:38.826816+00:00",
+  "final_checks": {
+    "prepared_source_hashes_match_current_and_replayed_code": true,
+    "original_records": 81,
+    "replayed_records": 81,
+    "byte_identical_records": 80,
+    "records_match": false,
+    "eight_sample_answers_match": true,
+    "extraction_audit_passed": true,
+    "chunks": 484,
+    "retrieval_hits_at_5": 10,
+    "retrieval_probes": 10,
+    "index_network_attempts": [],
+    "query_evaluation_passed": true,
+    "query_network_attempts": [],
+    "raw_audit_exit_codes": {
+      "audit_scrape": 0,
+      "check_raw_inputs": 0
+    },
+    "query_cli_exit_code": 0,
+    "query_cli_items_match": true
+  }
+}

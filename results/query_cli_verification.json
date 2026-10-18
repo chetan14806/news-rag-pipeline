@@ -1,0 +1,12 @@
+{
+  "checked_at": "2026-10-17T16:31:17.803318+00:00",
+  "passed": true,
+  "checks": {
+    "cli_status_answered": true,
+    "cli_items": 14,
+    "cli_matches_evaluated_location_list": true,
+    "all_eight_review_digests_match": true,
+    "no_pending_sample_judgments": true,
+    "query_lock_released": true
+  }
+}

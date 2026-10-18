@@ -1,0 +1,21 @@
+D:\projects\Zylabs_assignmnet\.venv\Lib\site-packages\torch\jit\_script.py:1491: FutureWarning: `torch.jit.script` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+{
+  "summary": {
+    "run_id": "2026-10-18T092055569075-0000",
+    "started_at": "2026-10-18T09:20:55.569075+00:00",
+    "processed": 81,
+    "written": 0,
+    "skipped": 81,
+    "failed": 0,
+    "warnings": 102,
+    "accepted": 81,
+    "finished_at": "2026-10-18T09:21:43.018543+00:00",
+    "status": "complete"
+  },
+  "records_identical": true,
+  "network_attempts": [],
+  "before_count": 81,
+  "after_count": 81,
+  "passed": true
+}

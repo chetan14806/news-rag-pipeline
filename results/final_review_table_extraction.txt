@@ -1,0 +1,21 @@
+D:\projects\Zylabs_assignmnet\.venv\Lib\site-packages\torch\jit\_script.py:1491: FutureWarning: `torch.jit.script` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+[1] a728615cf3 AI: ServiceNow Launches AI Passport to Reinvent Enterprise AI Governance
+[2] aae32e483e business: India’s Toy Giant Funskool Goes Global
+[3] 54d6587d20 technology: India’s Namma Yatri Model Heads to Europe: MTI Brings Open Mobility to Global Cities
+[4] 433547d7db business: NBFCs Drive 50% of New-to-Credit Originations, Expanding Financial Inclusion Across India’s Semi-Urban and Rural Markets
+[5] a7d3a6a7ff technology: India Launches World’s First Hyperloop Cargo Trial in Mumbai
+[6] fa078511b8 AI: Eloelo Group Unveils Dolphin AI, an Agentic AI Studio Revolutionizing Multi‑Shot Video Production for Creators Worldwide
+[7] 764dd9c308 business: India’s First Port-Based e-Methanol Plant: A Green Energy Milestone at Kandla
+{
+  "run_id": "2026-10-18T044537563791-0000",
+  "started_at": "2026-10-18T04:45:37.563791+00:00",
+  "processed": 7,
+  "written": 7,
+  "skipped": 0,
+  "failed": 0,
+  "warnings": 7,
+  "accepted": 81,
+  "finished_at": "2026-10-18T04:46:57.290867+00:00",
+  "status": "complete"
+}

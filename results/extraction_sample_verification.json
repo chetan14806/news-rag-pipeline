@@ -1,0 +1,41 @@
+{
+  "passed": true,
+  "verified_pairs": 5,
+  "pairs": [
+    {
+      "id": "a728615cf382868156c98b14b062b38ae84b728767d6260cdb198a227c377db3",
+      "html_sha256": "f82590208170ab3f2a3589876c837fd5ff55f6e9877158cc40207d13f3c17877",
+      "json_sha256": "e08fa9af31c8109ae54be0e94b7c1be04577ca4e9d779c5af58d506f59918000",
+      "schema_valid": true,
+      "matches_original_and_accepted_record": true
+    },
+    {
+      "id": "d65180ebd4815bd74bdc377b9dc4a68541ab5cdcc44372896cfa85435e0b98fa",
+      "html_sha256": "fda91df015d096030c2101ce719cc2c6709cbfe8642013a8e98851a58d6d0981",
+      "json_sha256": "ad75da615bbf4242633bd9427affbcb3d233f8187a2740789a13dd409f308b97",
+      "schema_valid": true,
+      "matches_original_and_accepted_record": true
+    },
+    {
+      "id": "1e81e4d564d516ba349aa25c2db52164881160111270bbafed26502c28fbb136",
+      "html_sha256": "9a7b2523a2ac3f317f70479bf90ae8dd33d72fb60cca64831a33b2f4eba2b328",
+      "json_sha256": "1ed1fc32d3baeabab2edfbd2ad080cf527c5c4c39cc3f36103248a0923559d33",
+      "schema_valid": true,
+      "matches_original_and_accepted_record": true
+    },
+    {
+      "id": "c16f5d69843ae23174a96c3f2bb17acf73c89de674cf54ee662d713c105dc7a3",
+      "html_sha256": "43c38260c7289b257d87c93ecdbe56cdb72d2dc3ba408c135e414a71f74b4625",
+      "json_sha256": "11463848a0eabbd6f1806f866b79eeb240926e7b22d4775e6f6fd8cd6c2bc9f1",
+      "schema_valid": true,
+      "matches_original_and_accepted_record": true
+    },
+    {
+      "id": "2bf2d452ef6073fa3233c9d90bc12aadeddd04af0ef6951a0ee8522fc3b2a391",
+      "html_sha256": "53b211327a8ecfdcd6d11d3b68ea7b4612f5dca9e1717a9016fe3825ab944c75",
+      "json_sha256": "8cf4e7f0a3c1fee5bc46551fd1b1cbfe27aa45cd54029f44bafd6fa9c404807c",
+      "schema_valid": true,
+      "matches_original_and_accepted_record": true
+    }
+  ]
+}

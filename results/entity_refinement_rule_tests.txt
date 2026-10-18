@@ -1,0 +1,12 @@
+test_explicit_platform_list_does_not_turn_products_into_places (test_entity_rules.EntityRuleTests.test_explicit_platform_list_does_not_turn_products_into_places) ... ok
+test_generic_organization_fragments_do_not_remove_named_groups (test_entity_rules.EntityRuleTests.test_generic_organization_fragments_do_not_remove_named_groups) ... ok
+test_institution_correction_requires_a_real_body_mention (test_entity_rules.EntityRuleTests.test_institution_correction_requires_a_real_body_mention) ... ok
+test_institution_moves_to_organizations_with_exact_evidence (test_entity_rules.EntityRuleTests.test_institution_moves_to_organizations_with_exact_evidence) ... ok
+test_operations_fragment_is_removed_without_inventing_a_city (test_entity_rules.EntityRuleTests.test_operations_fragment_is_removed_without_inventing_a_city) ... ok
+test_powered_cities_without_platform_evidence_are_retained (test_entity_rules.EntityRuleTests.test_powered_cities_without_platform_evidence_are_retained) ... ok
+test_unrelated_later_platform_sentence_does_not_remove_cities (test_entity_rules.EntityRuleTests.test_unrelated_later_platform_sentence_does_not_remove_cities) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.008s
+
+OK

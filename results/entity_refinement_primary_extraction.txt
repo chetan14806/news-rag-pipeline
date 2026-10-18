@@ -1,0 +1,95 @@
+D:\projects\Zylabs_assignmnet\.venv\Lib\site-packages\torch\jit\_script.py:1491: FutureWarning: `torch.jit.script` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+[1] 260c8afa4b business: Federal Bank Q2 FY27 Profit Surges 45% to Record ₹1,386 Cr, NPA at Decadal Lows
+[2] a728615cf3 AI: ServiceNow Launches AI Passport to Reinvent Enterprise AI Governance
+[3] f5f5a6d8a2 AI: Nucleus Software’s AI Agent Gives Loan Statements a Voice, Wins CII National AI Award
+[4] 4aace15ca5 funding: As You Asked Secures ₹45 Lakh to Simplify Children’s Nutrition
+[5] aae32e483e business: India’s Toy Giant Funskool Goes Global
+[6] 54d6587d20 technology: India’s Namma Yatri Model Heads to Europe: MTI Brings Open Mobility to Global Cities
+[7] 0f5af210f3 business: Shark Tank India 6 Launches Young Founders Special, Empowering Student Entrepreneurs to Pitch Bold Ideas to the Sharks
+[8] 899cf6e969 AI: Colt DCS and RMZ Break Ground on AI‑Ready Mega Data Centre in Mumbai, Driving $1.7B Digital Infrastructure Expansion
+[9] c331d4cb2c business: LTM Secures Multi-million Dollar Managed Services Transformation Deal
+[10] 403ed1d969 technology: Schneider Electric and Apple Introduce New Smart Thermostat for Apple Home Collection and Power Mount for Apple HomeView
+[11] 585cd7c9f4 technology: L&T Inks MoU with TuTr Hyperloop for Next-Generation Mobility Infrastructure
+[12] b24dad3829 business: Rural Entrepreneurship Fuels Microfinance Growth as Institutions Hold Lending Rates Steady
+[13] d30ebafdac AI: Zepto Tops LinkedIn’s 2026 India Startup List for Fourth Year, AI and Quick Commerce Drive Momentum
+[14] d65180ebd4 funding: Circle Raises Rs 25 Crore Led By Nexus Venture Partners, To Build India’s Trusted AI‑Driven Pre‑Owned Marketplace
+[15] a616dd613f AI: Dell Expands AI Data Platform With Semantic Layer, Knowledge Graph and GPU Acceleration
+[16] 1e81e4d564 funding: ThinkMetal Secures ₹27 Crore Led by IAN Alpha Fund to Scale Indigenous Precision Manufacturing
+[17] c16f5d6984 technology: GE Aerospace Announces Plans to Nearly Double Supplier Spend In-Country to Help Meet India’s Aviation Industry Growth
+[18] 7397d32050 technology: Viyona Fintech Enters African Expansion with Tap & Pay SoftPOS Launch in Zimbabwe, Eyes Africa’s $2 Trillion Payments Ecosystem
+[19] dfe252fb93 AI: Vertiv Marks AI Infrastructure Milestone with India’s First Direct‑to‑Chip Liquid Cooling Deployment
+[20] 7620fa695f funding: Bengaluru-based Peptris Technologies Gets ₹86 Cr Financial Support Under the RDI Fund of TDB-DST
+[21] 02d123bb0c funding: Inner Sky Labs Unveils Kavach, Raises ₹300 Cr to Scale Physical AI
+[22] 2bf2d452ef business: US Freezes Microsoft, Adobe & Indian IT Giants from Green Card Program in Sweeping Visa Crackdown
+[23] 2006407b9e funding: MoneyTruVa Gets Backing from Sunil Singhania (in personal capacity) and Raj Shamani to Build a Structured Financial Information Platform for Indian Investors
+[24] 7a4dad78a1 business: Citi Helps Indian Firms Raise $16bn YTD, Eyes Continued Deal Momentum
+[25] c93515168f business: Tata Power’s TP Solar Hits 1 GW Module, 0.9 GW Cell Output in Q2 FY27, Driving India’s Net‑Zero Manufacturing Push
+[26] 71b71e7bf2 business: Godrej Strengthens Indonesia Ties, Committing IDR 500B To Kendal Manufacturing
+[27] dd03122636 AI: AI Cracks the Code: OpenAI Publishes Landmark Math Breakthroughs
+[28] e6669a654f technology: Tata Power Partners Norway's Ocean Sun to Pilot Membrane‑Based Floating Solar in India
+[29] 2561212069 AI: IIT Hyderabad and S&P Global Launch AI Innovation Lab to Transform Finance Research
+[30] 60c213f9f2 business: MCX Gold Price Forecast 2026: Technical Levels Every Indian Trader Should Know
+[31] c3b355654a funding: byteXL Raises $9 Mn in Latest Funding Round Led by Elevar Equity and participation from existing investors Kalaari Capital and The Michael & Susan Dell Foundation
+[32] 009615960c technology: Bengaluru to Host One of India’s Largest Climate-Data Gatherings as Bangalore Climate Data Week 2026 Brings 30+ Events Together
+[33] 22b7dcb597 technology: Bharat Forge Secures Long‑Term Aerospace Engine Components Contract with Pratt & Whitney Canada
+[34] 4708765f55 funding: IAN Angel Fund Backs IndigoTex With ₹5 Crore To Scale India’s Waterless Wool Denim Innovation
+[35] ef2a742cb7 funding: Lorazzo Raises ₹15 Crore to Disrupt India’s Kitchen & Bathroom Market with Design‑Led Smart Fittings
+[36] 111a8e707e technology: SpaceX Crew-13 Blazes to ISS in Just 7h 55m
+[37] 70b9fec8f0 technology: Chhattisgarh Attracts ₹43,250 Cr FDI, Anchored by Hyperscale Data Centre Push at SING Forum 2026
+[38] 433547d7db business: NBFCs Drive 50% of New-to-Credit Originations, Expanding Financial Inclusion Across India’s Semi-Urban and Rural Markets
+[39] 7b209d5b24 business: WeWork India Expands Bengaluru and Pune Footprint with 2.25 Lakh Sq. Ft. and 4,500+ Desks at Infinix Palladium and Millennium Towers
+[40] 7427644acd AI: AM Intelligence Expands NVIDIA Vera Rubin AI Factory Buildout with 29,000 GPUs and 100 MW Capacity Across India and Malaysia
+[41] ada4156156 technology: Cygni Energy and Indus Towers Partner to Build 1.5 GWh Battery Storage for Sustainable Telecom Infrastructure in India
+[42] a7d3a6a7ff technology: India Launches World’s First Hyperloop Cargo Trial in Mumbai
+[43] d609bd8269 funding: India’s First WASH Bond Raises ₹180 Crore for Clean Water and Sanitation
+[44] fb778256bd business: Pharma Dept Launches Special Campaign 6: 12,000 Cleanliness Drives, 1,000+ E-Waste Items Targeted
+[45] e64f5e9938 technology: India’s Sky Bus Vision: Gadkari Unveils Futuristic Leap in Urban Transit
+[46] ac474c6f3e business: SECI Invites Proposals to Build India’s Green Hydrogen Hubs
+[47] 507cf711f7 technology: India Tops Crypto Inflows: Surpasses Singapore and Australia in Centralized Exchange Activity
+[48] 9ee7c46e30 business: Kerala Police to Procure 120 Submachine Guns for Security Duties
+[49] c2e5a1f87c business: Bank of Baroda Enters Pension Fund Arena, Second PSU Bank to Enter Market
+[50] 36a1c92682 technology: Kuehne+Nagel Expands Digital Engineering with New Tech Centre in Chennai
+[51] 658df38d4a technology: Cloudflare Launches Basin: Unlocking Open Data for the World
+[52] 54134acd96 AI: Delhi’s AI Traffic Revolution
+[53] b1f075a977 business: CEAT Expands Chennai Plant Capabilities to Strengthen Global Premium Tyre Play
+[54] 2b1671f77b technology: Kotak BizLabs 3rd Edition Expands National Footprint, Will Support 100+ Startups
+[55] 6703781723 funding: Unveilr AI Raises Pre-Seed at ₹16.7 Crore Valuation from Aviral Bhatnagar’s AJVC to Turn AI Search into Leads
+[56] 0efa9a7254 technology: Govt Launches ₹50 Cr Support Track for Pharma & MedTech Startups
+[57] 05883f45d2 business: Adani Group Affiliate Plans ₹1,250 Cr IPO to Boost Solar Manufacturing
+[58] edf6418b9a technology: Kaveri Engine Success: India’s Indigenous Jet Engine Surpasses Thrust Targets in Russia Trials
+[59] a8b8c06431 funding: Subvocal’s WearableTech Raises $1.3M from Y Combinator & Others to Transform Silent Speech Into Seamless Computer Interaction
+[60] 71d3f10039 technology: PayU Integrates Apple Pay, Empowering Secure Digital Payments Across India
+[61] 512f4d142e technology: Axis Bank Brings Apple Pay to Credit Card Customers in India
+[62] 043dc5acf0 technology: World Record in Orbit: Girls Across 108 Nations Build Satellite Together in India
+[63] 9e92927369 funding: Capital India Finance Raises ₹100 Crore via NCD Issue to Boost MSME and Retail Lending Growth
+[64] d11a3251d6 technology: Sikkim Ties Up with IIM Calcutta to Ignite 250 Startups, 1,000+ Jobs
+[65] fa078511b8 AI: Eloelo Group Unveils Dolphin AI, an Agentic AI Studio Revolutionizing Multi‑Shot Video Production for Creators Worldwide
+[66] 6e00e5b2aa business: India’s Home Market Set to Hit $260B by 2030, Deloitte Finds
+[67] c76f198cc1 funding: Arma Capital Invests ₹10 Crore Across EBG Group’s Wellness, Food and Family Businesses
+[68] 947c8f5f60 business: SWITCH Mobility Secures 840 Electric Bus Order for Delhi Under PM E‑Drive Phase I
+[69] 67d5b984a5 technology: Sachin Tendulkar Partners with OpenAI to Launch ChatGPT’s New Inning in India
+[70] 0f179319f9 technology: India-France Space Cooperation Enters New Phase with Human Spaceflight and Start-up Collaboration
+[71] 8b9498be10 technology: India’s TakeMe2Space to Launch Distributed Orbital Data Center on SpaceX Falcon 9
+[72] 7905fc5756 technology: Infosys Reinvents IT Pyramid: 6,000 Frontier Engineers, One‑Third Specialists
+[73] 8e31517759 technology: Snapdeal Joins YouTube Shopping Affiliate Program to Power Creator-Led Commerce
+[74] 73f5f980f7 business: IndusInd Bank Powers India’s GCC Growth With New Banking Vertical
+[75] 81cd63f758 business: HDFC BSE REITS and Commercial Real Estate Index Fund Now Open for Ongoing Subscription
+[76] e46533b693 business: JSW Group Rolls Out AMPSTAR EV Buses & Trucks
+[77] b34556a9b3 technology: IIT Delhi Develops India's Ist Indigenously Designed Micro‑GPU
+[78] 764dd9c308 business: India’s First Port-Based e-Methanol Plant: A Green Energy Milestone at Kandla
+[79] 290d669a00 business: Maruti Suzuki Pilots 300 kW Green Hydrogen Electrolyzer, Pioneering Low‑Carbon Manufacturing in India
+[80] 87b569d5a8 AI: Gemini AI Dials In: Pixel’s Voice Assistant Now Makes Real Calls for You
+[81] e242c2eec7 business: Jio Prices India’s Biggest IPO
+{
+  "run_id": "2026-10-18T085726778520-0000",
+  "started_at": "2026-10-18T08:57:26.778520+00:00",
+  "processed": 81,
+  "written": 81,
+  "skipped": 0,
+  "failed": 0,
+  "warnings": 102,
+  "accepted": 81,
+  "finished_at": "2026-10-18T09:11:26.958615+00:00",
+  "status": "complete"
+}

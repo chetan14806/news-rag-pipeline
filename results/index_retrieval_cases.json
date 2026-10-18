@@ -1,0 +1,15 @@
+{
+  "scope": "Predeclared development retrieval probes; not the assignment's eight final question-answer evaluations or a held-out benchmark.",
+  "cases": [
+    {"question": "How can companies control and supervise the use of artificial intelligence across their operations?", "expected_article_id": "a728615cf382868156c98b14b062b38ae84b728767d6260cdb198a227c377db3"},
+    {"question": "A passport for managing enterprise AI governance", "expected_article_id": "a728615cf382868156c98b14b062b38ae84b728767d6260cdb198a227c377db3"},
+    {"question": "Which startup received investment to make buying used goods more trustworthy with AI?", "expected_article_id": "d65180ebd4815bd74bdc377b9dc4a68541ab5cdcc44372896cfa85435e0b98fa"},
+    {"question": "Funding for an Indian secondhand resale marketplace", "expected_article_id": "d65180ebd4815bd74bdc377b9dc4a68541ab5cdcc44372896cfa85435e0b98fa"},
+    {"question": "Investment to expand domestically developed precision metal manufacturing", "expected_article_id": "1e81e4d564d516ba349aa25c2db52164881160111270bbafed26502c28fbb136"},
+    {"question": "Who backed the Indian metal 3D printing startup's expansion?", "expected_article_id": "1e81e4d564d516ba349aa25c2db52164881160111270bbafed26502c28fbb136"},
+    {"question": "Aircraft engine maker intends to buy much more from Indian suppliers", "expected_article_id": "c16f5d69843ae23174a96c3f2bb17acf73c89de674cf54ee662d713c105dc7a3"},
+    {"question": "Plans to almost double local sourcing expenditure for India's aviation growth", "expected_article_id": "c16f5d69843ae23174a96c3f2bb17acf73c89de674cf54ee662d713c105dc7a3"},
+    {"question": "Restrictions on technology firms sponsoring permanent residency for foreign workers in America", "expected_article_id": "2bf2d452ef6073fa3233c9d90bc12aadeddd04af0ef6951a0ee8522fc3b2a391"},
+    {"question": "Green card sponsorship freeze affecting software companies", "expected_article_id": "2bf2d452ef6073fa3233c9d90bc12aadeddd04af0ef6951a0ee8522fc3b2a391"}
+  ]
+}

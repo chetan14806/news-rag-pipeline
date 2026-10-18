@@ -1,0 +1,23 @@
+test_additional_query_wording_does_not_change_operation (test_query.QueryTests.test_additional_query_wording_does_not_change_operation) ... ok
+test_calendar_month_and_non_utc_reference (test_query.QueryTests.test_calendar_month_and_non_utc_reference) ... ok
+test_combined_financial_location_and_company_filters (test_query.QueryTests.test_combined_financial_location_and_company_filters) ... ok
+test_company_legal_suffix_and_stage_aliases_do_not_inflate_rounds (test_query.QueryTests.test_company_legal_suffix_and_stage_aliases_do_not_inflate_rounds) ... ok
+test_company_unknown_and_missing_parameter_do_not_broaden (test_query.QueryTests.test_company_unknown_and_missing_parameter_do_not_broaden) ... ok
+test_distinct_funds_are_not_parent_merged (test_query.QueryTests.test_distinct_funds_are_not_parent_merged) ... ok
+test_exhaustive_location_alias_and_word_boundary (test_query.QueryTests.test_exhaustive_location_alias_and_word_boundary) ... ok
+test_explicit_upper_bound_does_not_get_overwritten_or_gain_default_lower_bound (test_query.QueryTests.test_explicit_upper_bound_does_not_get_overwritten_or_gain_default_lower_bound) ... ok
+test_funding_pending_and_debt_excluded (test_query.QueryTests.test_funding_pending_and_debt_excluded) ... ok
+test_layoff_timing_uses_article_year_and_requested_window (test_query.QueryTests.test_layoff_timing_uses_article_year_and_requested_window) ... ok
+test_layoffs_negation_history_conditional_and_current (test_query.QueryTests.test_layoffs_negation_history_conditional_and_current) ... ok
+test_location_time_phrase_is_not_part_of_the_city (test_query.QueryTests.test_location_time_phrase_is_not_part_of_the_city) ... ok
+test_paraphrase_intents (test_query.QueryTests.test_paraphrase_intents) ... ok
+test_repeat_investors_duplicate_unknown_and_distinct_rounds (test_query.QueryTests.test_repeat_investors_duplicate_unknown_and_distinct_rounds) ... ok
+test_revenue_profit_forecast_subject_and_ambiguity (test_query.QueryTests.test_revenue_profit_forecast_subject_and_ambiguity) ... ok
+test_revenue_table_keeps_headers_rows_and_units (test_query.QueryTests.test_revenue_table_keeps_headers_rows_and_units) ... ok
+test_timezone_and_rolling_boundary_future_exclusion (test_query.QueryTests.test_timezone_and_rolling_boundary_future_exclusion) ... ok
+test_weather_and_unhandled_requests_refuse_without_retrieval (test_query.QueryTests.test_weather_and_unhandled_requests_refuse_without_retrieval) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.027s
+
+OK

@@ -1,0 +1,94 @@
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 3026.38it/s]
+[1/81] Bengaluru to Host One of India’s Largest Climate-Data Gatherings as Bangalore Climate Data Week 2026 Brings 30+ Events Together
+[2/81] Inner Sky Labs Unveils Kavach, Raises ₹300 Cr to Scale Physical AI
+[3/81] World Record in Orbit: Girls Across 108 Nations Build Satellite Together in India
+[4/81] Adani Group Affiliate Plans ₹1,250 Cr IPO to Boost Solar Manufacturing
+[5/81] Govt Launches ₹50 Cr Support Track for Pharma & MedTech Startups
+[6/81] India-France Space Cooperation Enters New Phase with Human Spaceflight and Start-up Collaboration
+[7/81] Shark Tank India 6 Launches Young Founders Special, Empowering Student Entrepreneurs to Pitch Bold Ideas to the Sharks
+[8/81] SpaceX Crew-13 Blazes to ISS in Just 7h 55m
+[9/81] ThinkMetal Secures ₹27 Crore Led by IAN Alpha Fund to Scale Indigenous Precision Manufacturing
+[10/81] MoneyTruVa Gets Backing from Sunil Singhania (in personal capacity) and Raj Shamani to Build a Structured Financial Information Platform for Indian Investors
+[11/81] Bharat Forge Secures Long‑Term Aerospace Engine Components Contract with Pratt & Whitney Canada
+[12/81] IIT Hyderabad and S&P Global Launch AI Innovation Lab to Transform Finance Research
+[13/81] Federal Bank Q2 FY27 Profit Surges 45% to Record ₹1,386 Cr, NPA at Decadal Lows
+[14/81] Maruti Suzuki Pilots 300 kW Green Hydrogen Electrolyzer, Pioneering Low‑Carbon Manufacturing in India
+[15/81] Kotak BizLabs 3rd Edition Expands National Footprint, Will Support 100+ Startups
+[16/81] US Freezes Microsoft, Adobe & Indian IT Giants from Green Card Program in Sweeping Visa Crackdown
+[17/81] Kuehne+Nagel Expands Digital Engineering with New Tech Centre in Chennai
+[18/81] Schneider Electric and Apple Introduce New Smart Thermostat for Apple Home Collection and Power Mount for Apple HomeView
+[19/81] NBFCs Drive 50% of New-to-Credit Originations, Expanding Financial Inclusion Across India’s Semi-Urban and Rural Markets
+[20/81] IAN Angel Fund Backs IndigoTex With ₹5 Crore To Scale India’s Waterless Wool Denim Innovation
+[21/81] As You Asked Secures ₹45 Lakh to Simplify Children’s Nutrition
+[22/81] India Tops Crypto Inflows: Surpasses Singapore and Australia in Centralized Exchange Activity
+[23/81] Axis Bank Brings Apple Pay to Credit Card Customers in India
+[24/81] Delhi’s AI Traffic Revolution
+[25/81] India’s Namma Yatri Model Heads to Europe: MTI Brings Open Mobility to Global Cities
+[26/81] L&T Inks MoU with TuTr Hyperloop for Next-Generation Mobility Infrastructure
+[27/81] MCX Gold Price Forecast 2026: Technical Levels Every Indian Trader Should Know
+[28/81] Cloudflare Launches Basin: Unlocking Open Data for the World
+[29/81] Unveilr AI Raises Pre-Seed at ₹16.7 Crore Valuation from Aviral Bhatnagar’s AJVC to Turn AI Search into Leads
+[30/81] Sachin Tendulkar Partners with OpenAI to Launch ChatGPT’s New Inning in India
+[31/81] India’s Home Market Set to Hit $260B by 2030, Deloitte Finds
+[32/81] Chhattisgarh Attracts ₹43,250 Cr FDI, Anchored by Hyperscale Data Centre Push at SING Forum 2026
+[33/81] Godrej Strengthens Indonesia Ties, Committing IDR 500B To Kendal Manufacturing
+[34/81] PayU Integrates Apple Pay, Empowering Secure Digital Payments Across India
+[35/81] Viyona Fintech Enters African Expansion with Tap & Pay SoftPOS Launch in Zimbabwe, Eyes Africa’s $2 Trillion Payments Ecosystem
+[36/81] IndusInd Bank Powers India’s GCC Growth With New Banking Vertical
+[37/81] AM Intelligence Expands NVIDIA Vera Rubin AI Factory Buildout with 29,000 GPUs and 100 MW Capacity Across India and Malaysia
+[38/81] Bengaluru-based Peptris Technologies Gets ₹86 Cr Financial Support Under the RDI Fund of TDB-DST
+[39/81] India’s First Port-Based e-Methanol Plant: A Green Energy Milestone at Kandla
+[40/81] Infosys Reinvents IT Pyramid: 6,000 Frontier Engineers, One‑Third Specialists
+[41/81] Citi Helps Indian Firms Raise $16bn YTD, Eyes Continued Deal Momentum
+[42/81] WeWork India Expands Bengaluru and Pune Footprint with 2.25 Lakh Sq. Ft. and 4,500+ Desks at Infinix Palladium and Millennium Towers
+[43/81] HDFC BSE REITS and Commercial Real Estate Index Fund Now Open for Ongoing Subscription
+[44/81] Gemini AI Dials In: Pixel’s Voice Assistant Now Makes Real Calls for You
+[45/81] Colt DCS and RMZ Break Ground on AI‑Ready Mega Data Centre in Mumbai, Driving $1.7B Digital Infrastructure Expansion
+[46/81] India’s TakeMe2Space to Launch Distributed Orbital Data Center on SpaceX Falcon 9
+[47/81] Snapdeal Joins YouTube Shopping Affiliate Program to Power Creator-Led Commerce
+[48/81] SWITCH Mobility Secures 840 Electric Bus Order for Delhi Under PM E‑Drive Phase I
+[49/81] Capital India Finance Raises ₹100 Crore via NCD Issue to Boost MSME and Retail Lending Growth
+[50/81] Kerala Police to Procure 120 Submachine Guns for Security Duties
+[51/81] Dell Expands AI Data Platform With Semantic Layer, Knowledge Graph and GPU Acceleration
+[52/81] ServiceNow Launches AI Passport to Reinvent Enterprise AI Governance
+[53/81] India Launches World’s First Hyperloop Cargo Trial in Mumbai
+[54/81] Subvocal’s WearableTech Raises $1.3M from Y Combinator & Others to Transform Silent Speech Into Seamless Computer Interaction
+[55/81] India’s Toy Giant Funskool Goes Global
+[56/81] SECI Invites Proposals to Build India’s Green Hydrogen Hubs
+[57/81] Cygni Energy and Indus Towers Partner to Build 1.5 GWh Battery Storage for Sustainable Telecom Infrastructure in India
+[58/81] CEAT Expands Chennai Plant Capabilities to Strengthen Global Premium Tyre Play
+[59/81] Rural Entrepreneurship Fuels Microfinance Growth as Institutions Hold Lending Rates Steady
+[60/81] IIT Delhi Develops India's Ist Indigenously Designed Micro‑GPU
+[61/81] GE Aerospace Announces Plans to Nearly Double Supplier Spend In-Country to Help Meet India’s Aviation Industry Growth
+[62/81] Bank of Baroda Enters Pension Fund Arena, Second PSU Bank to Enter Market
+[63/81] LTM Secures Multi-million Dollar Managed Services Transformation Deal
+[64/81] byteXL Raises $9 Mn in Latest Funding Round Led by Elevar Equity and participation from existing investors Kalaari Capital and The Michael & Susan Dell Foundation
+[65/81] Arma Capital Invests ₹10 Crore Across EBG Group’s Wellness, Food and Family Businesses
+[66/81] Tata Power’s TP Solar Hits 1 GW Module, 0.9 GW Cell Output in Q2 FY27, Driving India’s Net‑Zero Manufacturing Push
+[67/81] Sikkim Ties Up with IIM Calcutta to Ignite 250 Startups, 1,000+ Jobs
+[68/81] Zepto Tops LinkedIn’s 2026 India Startup List for Fourth Year, AI and Quick Commerce Drive Momentum
+[69/81] India’s First WASH Bond Raises ₹180 Crore for Clean Water and Sanitation
+[70/81] Circle Raises Rs 25 Crore Led By Nexus Venture Partners, To Build India’s Trusted AI‑Driven Pre‑Owned Marketplace
+[71/81] AI Cracks the Code: OpenAI Publishes Landmark Math Breakthroughs
+[72/81] Vertiv Marks AI Infrastructure Milestone with India’s First Direct‑to‑Chip Liquid Cooling Deployment
+[73/81] Jio Prices India’s Biggest IPO
+[74/81] JSW Group Rolls Out AMPSTAR EV Buses & Trucks
+[75/81] India’s Sky Bus Vision: Gadkari Unveils Futuristic Leap in Urban Transit
+[76/81] Tata Power Partners Norway's Ocean Sun to Pilot Membrane‑Based Floating Solar in India
+[77/81] Kaveri Engine Success: India’s Indigenous Jet Engine Surpasses Thrust Targets in Russia Trials
+[78/81] Lorazzo Raises ₹15 Crore to Disrupt India’s Kitchen & Bathroom Market with Design‑Led Smart Fittings
+[79/81] Nucleus Software’s AI Agent Gives Loan Statements a Voice, Wins CII National AI Award
+[80/81] Eloelo Group Unveils Dolphin AI, an Agentic AI Studio Revolutionizing Multi‑Shot Video Production for Creators Worldwide
+[81/81] Pharma Dept Launches Special Campaign 6: 12,000 Cleanliness Drives, 1,000+ E-Waste Items Targeted
+{
+  "run_id": "2026-10-18T032353366748-0000",
+  "started_at": "2026-10-18T03:23:53.366748+00:00",
+  "written_articles": 81,
+  "skipped_articles": 0,
+  "embedded_chunks": 484,
+  "removed_chunks": 0,
+  "status": "complete",
+  "articles": 81,
+  "chunks": 484,
+  "finished_at": "2026-10-18T03:25:38.377316+00:00"
+}

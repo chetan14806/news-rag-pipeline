@@ -1,0 +1,81 @@
+{
+  "started_at": "2026-10-18T08:55:59.014096+00:00",
+  "passed": true,
+  "scope": "Development environment refresh after extractor revision; saved original HTML and models reused. No new publisher scrape.",
+  "workspace": "D:\\projects\\Zylabs_assignmnet",
+  "python": "D:\\projects\\Zylabs_assignmnet\\.venv\\Scripts\\python.exe",
+  "steps": [
+    {
+      "name": "dependencies",
+      "arguments": [
+        "-m",
+        "pip",
+        "check"
+      ],
+      "exit_code": 0,
+      "seconds": 11.52,
+      "log": "entity_refinement_primary_dependencies.txt"
+    },
+    {
+      "name": "tests",
+      "arguments": [
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exit_code": 0,
+      "seconds": 59.72,
+      "log": "entity_refinement_primary_tests.txt"
+    },
+    {
+      "name": "extraction",
+      "arguments": [
+        "extract.py"
+      ],
+      "exit_code": 0,
+      "seconds": 859.23,
+      "log": "entity_refinement_primary_extraction.txt"
+    },
+    {
+      "name": "extraction_audit",
+      "arguments": [
+        "tools/audit_extraction.py"
+      ],
+      "exit_code": 0,
+      "seconds": 23.06,
+      "log": "entity_refinement_primary_extraction_audit.txt"
+    },
+    {
+      "name": "index",
+      "arguments": [
+        "index.py"
+      ],
+      "exit_code": 0,
+      "seconds": 214.8,
+      "log": "entity_refinement_primary_index.txt"
+    },
+    {
+      "name": "index_audit",
+      "arguments": [
+        "tools/audit_index.py",
+        "--rerun"
+      ],
+      "exit_code": 0,
+      "seconds": 106.59,
+      "log": "entity_refinement_primary_index_audit.txt"
+    },
+    {
+      "name": "queries",
+      "arguments": [
+        "tools/evaluate_queries.py"
+      ],
+      "exit_code": 0,
+      "seconds": 149.08,
+      "log": "entity_refinement_primary_queries.txt"
+    }
+  ],
+  "finished_at": "2026-10-18T09:19:43.028130+00:00"
+}

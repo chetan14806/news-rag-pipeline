@@ -1,0 +1,11 @@
+{
+  "checked_at": "2026-10-18T03:28:43.271078+00:00",
+  "manifest_articles": 81,
+  "verified_articles": 81,
+  "total_raw_bytes": 25493154,
+  "invalid": [],
+  "duplicate_final_urls": [],
+  "orphan_raw_files": [],
+  "note": "Raw transport/storage integrity only; not full extraction or event/category accuracy.",
+  "passed": true
+}

@@ -1,0 +1,179 @@
+{
+  "schema_version": 1,
+  "source": "IndianWeb2",
+  "articles": {
+    "a728615cf382868156c98b14b062b38ae84b728767d6260cdb198a227c377db3": {
+      "id": "a728615cf382868156c98b14b062b38ae84b728767d6260cdb198a227c377db3",
+      "url": "https://www.indianweb2.com/2026/10/servicenow-launches-ai-passport-to.html",
+      "final_url": "https://www.indianweb2.com/2026/10/servicenow-launches-ai-passport-to.html",
+      "fetched_at": "2026-10-17T06:57:01.100721+00:00",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "content_encoding": "identity",
+      "etag": null,
+      "last_modified": "Sat, 17 Oct 2026 06:56:58 GMT",
+      "bytes": 318674,
+      "sha256": "f82590208170ab3f2a3589876c837fd5ff55f6e9877158cc40207d13f3c17877",
+      "raw_path": "raw/a728615cf382868156c98b14b062b38ae84b728767d6260cdb198a227c377db3.html",
+      "redirects": [],
+      "discovery": {
+        "discovered_url": "https://www.indianweb2.com/2026/10/servicenow-launches-ai-passport-to.html",
+        "title": "ServiceNow Launches AI Passport to Reinvent Enterprise AI Governance",
+        "labels": [
+          "AI Governance",
+          "Artificial Intelligence",
+          "E-governance",
+          "Enterprise AI",
+          "Governance",
+          "ServiceNow",
+          "Technology"
+        ],
+        "feed_published_at": "Fri, 16 Oct 2026 09:54:12 +0000",
+        "url": "https://www.indianweb2.com/2026/10/servicenow-launches-ai-passport-to.html",
+        "feed_url": "https://www.indianweb2.com/feeds/posts/default?alt=rss&max-results=100",
+        "feed_snapshot": "discovery/feed-2026-10-17T065640609948-0000.xml",
+        "feed_fetched_at": "2026-10-17T06:56:51.134394+00:00"
+      },
+      "run_id": "2026-10-17T065640609948-0000"
+    },
+    "d65180ebd4815bd74bdc377b9dc4a68541ab5cdcc44372896cfa85435e0b98fa": {
+      "id": "d65180ebd4815bd74bdc377b9dc4a68541ab5cdcc44372896cfa85435e0b98fa",
+      "url": "https://www.indianweb2.com/2026/10/circle-raises-rs-25-crore-led-by-nexus.html",
+      "final_url": "https://www.indianweb2.com/2026/10/circle-raises-rs-25-crore-led-by-nexus.html",
+      "fetched_at": "2026-10-17T06:59:43.701582+00:00",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "content_encoding": "identity",
+      "etag": null,
+      "last_modified": "Sat, 17 Oct 2026 06:59:34 GMT",
+      "bytes": 317587,
+      "sha256": "fda91df015d096030c2101ce719cc2c6709cbfe8642013a8e98851a58d6d0981",
+      "raw_path": "raw/d65180ebd4815bd74bdc377b9dc4a68541ab5cdcc44372896cfa85435e0b98fa.html",
+      "redirects": [],
+      "discovery": {
+        "discovered_url": "https://www.indianweb2.com/2026/10/circle-raises-rs-25-crore-led-by-nexus.html",
+        "title": "Circle Raises Rs 25 Crore Led By Nexus Venture Partners, To Build India’s Trusted AI‑Driven Pre‑Owned Marketplace",
+        "labels": [
+          "Bengaluru startups",
+          "Business",
+          "C2C",
+          "Circle",
+          "Nexus Venture Partners",
+          "Startup Funding",
+          "Startups"
+        ],
+        "feed_published_at": "Wed, 14 Oct 2026 04:23:13 +0000",
+        "url": "https://www.indianweb2.com/2026/10/circle-raises-rs-25-crore-led-by-nexus.html",
+        "feed_url": "https://www.indianweb2.com/feeds/posts/default?alt=rss&max-results=100",
+        "feed_snapshot": "discovery/feed-2026-10-17T065841242212-0000.xml",
+        "feed_fetched_at": "2026-10-17T06:58:50.733784+00:00"
+      },
+      "run_id": "2026-10-17T065841242212-0000"
+    },
+    "1e81e4d564d516ba349aa25c2db52164881160111270bbafed26502c28fbb136": {
+      "id": "1e81e4d564d516ba349aa25c2db52164881160111270bbafed26502c28fbb136",
+      "url": "https://www.indianweb2.com/2026/10/thinkmetal-secures-27-crore-led-by-ian.html",
+      "final_url": "https://www.indianweb2.com/2026/10/thinkmetal-secures-27-crore-led-by-ian.html",
+      "fetched_at": "2026-10-17T06:59:55.623637+00:00",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "content_encoding": "identity",
+      "etag": null,
+      "last_modified": "Sat, 17 Oct 2026 06:59:34 GMT",
+      "bytes": 316642,
+      "sha256": "9a7b2523a2ac3f317f70479bf90ae8dd33d72fb60cca64831a33b2f4eba2b328",
+      "raw_path": "raw/1e81e4d564d516ba349aa25c2db52164881160111270bbafed26502c28fbb136.html",
+      "redirects": [],
+      "discovery": {
+        "discovered_url": "https://www.indianweb2.com/2026/10/thinkmetal-secures-27-crore-led-by-ian.html",
+        "title": "ThinkMetal Secures ₹27 Crore Led by IAN Alpha Fund to Scale Indigenous Precision Manufacturing",
+        "labels": [
+          "Deep Tech",
+          "Deep Technology",
+          "IAN Angel Fund",
+          "IAN Group",
+          "Manufacturing",
+          "Startup Funding",
+          "Startups",
+          "Technology",
+          "ThinkMetal"
+        ],
+        "feed_published_at": "Tue, 13 Oct 2026 07:09:17 +0000",
+        "url": "https://www.indianweb2.com/2026/10/thinkmetal-secures-27-crore-led-by-ian.html",
+        "feed_url": "https://www.indianweb2.com/feeds/posts/default?alt=rss&max-results=100",
+        "feed_snapshot": "discovery/feed-2026-10-17T065841242212-0000.xml",
+        "feed_fetched_at": "2026-10-17T06:58:50.733784+00:00"
+      },
+      "run_id": "2026-10-17T065841242212-0000"
+    },
+    "c16f5d69843ae23174a96c3f2bb17acf73c89de674cf54ee662d713c105dc7a3": {
+      "id": "c16f5d69843ae23174a96c3f2bb17acf73c89de674cf54ee662d713c105dc7a3",
+      "url": "https://www.indianweb2.com/2026/10/ge-aerospace-announces-plans-to-nearly.html",
+      "final_url": "https://www.indianweb2.com/2026/10/ge-aerospace-announces-plans-to-nearly.html",
+      "fetched_at": "2026-10-17T07:00:01.638998+00:00",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "content_encoding": "identity",
+      "etag": null,
+      "last_modified": "Sat, 17 Oct 2026 06:59:34 GMT",
+      "bytes": 314567,
+      "sha256": "43c38260c7289b257d87c93ecdbe56cdb72d2dc3ba408c135e414a71f74b4625",
+      "raw_path": "raw/c16f5d69843ae23174a96c3f2bb17acf73c89de674cf54ee662d713c105dc7a3.html",
+      "redirects": [],
+      "discovery": {
+        "discovered_url": "https://www.indianweb2.com/2026/10/ge-aerospace-announces-plans-to-nearly.html",
+        "title": "GE Aerospace Announces Plans to Nearly Double Supplier Spend In-Country to Help Meet India’s Aviation Industry Growth",
+        "labels": [
+          "Aviation",
+          "Business",
+          "GE Aerospace",
+          "Manufacturing",
+          "Technology"
+        ],
+        "feed_published_at": "Mon, 12 Oct 2026 12:44:21 +0000",
+        "url": "https://www.indianweb2.com/2026/10/ge-aerospace-announces-plans-to-nearly.html",
+        "feed_url": "https://www.indianweb2.com/feeds/posts/default?alt=rss&max-results=100",
+        "feed_snapshot": "discovery/feed-2026-10-17T065841242212-0000.xml",
+        "feed_fetched_at": "2026-10-17T06:58:50.733784+00:00"
+      },
+      "run_id": "2026-10-17T065841242212-0000"
+    },
+    "2bf2d452ef6073fa3233c9d90bc12aadeddd04af0ef6951a0ee8522fc3b2a391": {
+      "id": "2bf2d452ef6073fa3233c9d90bc12aadeddd04af0ef6951a0ee8522fc3b2a391",
+      "url": "https://www.indianweb2.com/2026/10/us-freezes-microsoft-adobe-indian-it.html",
+      "final_url": "https://www.indianweb2.com/2026/10/us-freezes-microsoft-adobe-indian-it.html",
+      "fetched_at": "2026-10-17T07:00:31.805308+00:00",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "content_encoding": "identity",
+      "etag": null,
+      "last_modified": "Sat, 17 Oct 2026 06:59:34 GMT",
+      "bytes": 316452,
+      "sha256": "53b211327a8ecfdcd6d11d3b68ea7b4612f5dca9e1717a9016fe3825ab944c75",
+      "raw_path": "raw/2bf2d452ef6073fa3233c9d90bc12aadeddd04af0ef6951a0ee8522fc3b2a391.html",
+      "redirects": [],
+      "discovery": {
+        "discovered_url": "https://www.indianweb2.com/2026/10/us-freezes-microsoft-adobe-indian-it.html",
+        "title": "US Freezes Microsoft, Adobe & Indian IT Giants from Green Card Program in Sweeping Visa Crackdown",
+        "labels": [
+          "Business",
+          "employees",
+          "Immigration",
+          "IT industry",
+          "Jobs",
+          "TCS",
+          "United States",
+          "US VISA Microsoft",
+          "Wipro"
+        ],
+        "feed_published_at": "Fri, 09 Oct 2026 08:36:44 +0000",
+        "url": "https://www.indianweb2.com/2026/10/us-freezes-microsoft-adobe-indian-it.html",
+        "feed_url": "https://www.indianweb2.com/feeds/posts/default?alt=rss&max-results=100",
+        "feed_snapshot": "discovery/feed-2026-10-17T065841242212-0000.xml",
+        "feed_fetched_at": "2026-10-17T06:58:50.733784+00:00"
+      },
+      "run_id": "2026-10-17T065841242212-0000"
+    }
+  },
+  "updated_at": "2026-10-17T07:09:47.027279+00:00"
+}

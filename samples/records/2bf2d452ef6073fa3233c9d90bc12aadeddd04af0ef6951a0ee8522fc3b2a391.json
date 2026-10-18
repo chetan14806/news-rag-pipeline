@@ -1,0 +1,661 @@
+{
+  "id": "2bf2d452ef6073fa3233c9d90bc12aadeddd04af0ef6951a0ee8522fc3b2a391",
+  "url": "https://www.indianweb2.com/2026/10/us-freezes-microsoft-adobe-indian-it.html",
+  "title": "US Freezes Microsoft, Adobe & Indian IT Giants from Green Card Program in Sweeping Visa Crackdown",
+  "author": [
+    "IndianWeb2"
+  ],
+  "published_at": "2026-10-09T08:36:00Z",
+  "body": "The US Department of Labor has announced suspension of Microsoft, Adobe, and six major IT firms—including Infosys, TCS, Wipro, HCL, Capgemini, and Cognizant—from the Permanent Labor Certification (PERM) program, citing alleged visa fraud and abuse. This halts new and pending green card sponsorships for foreign workers, a move that could significantly impact Indian IT professionals and outsourcing firms.\nOn October 8, 2026, the U.S. Department of Labor, alongside Vice President JD Vance and Labor Secretary Keith Sonderling, formally declared the suspension of Microsoft, Adobe, Infosys, TCS, Wipro, HCL Technologies, Capgemini, and Cognizant from the PERM green card certification program. The announcement was made during a press briefing in Washington, D.C., citing ongoing investigations into visa fraud and misuse of the H‑1B system.\nIndian professionals in the US face heightened uncertainty after the suspension of Microsoft, Adobe, and six IT firms from the PERM program. While existing H‑1B visas remain valid, thousands of workers awaiting green card sponsorships now risk indefinite delays, especially those nearing the six‑year H‑1B limit\nWorkers whose employers are suspended cannot proceed with new or pending PERM filings, blocking their path to permanent residency. Current H‑1B visas are unaffected, but those close to the six‑year cap face pressure to find alternative immigration routes.\nMany Indian professionals who planned long‑term settlement in the US must now reassess timelines and options. Notably, delays in green card processing affect dependents’ visa security, education, and healthcare access.\nTCS has downplayed impact, noting its PERM filings were in “single digits” over the past two years, and reaffirmed hiring 15,000 US jobs through local recruitment.\nIndia’s IT industry body NASSCOM has stressed that immigration and skilled talent mobility should be treated separately, highlighting reduced dependence on H‑1B visas and increased local hiring.\nKey Facts\n- Announcement Date: October 8, 2026\n- Authority: US Labor Secretary Keith Sonderling, backed by VP JD Vance and Attorney General Todd Blanche\n- Companies Suspended: Microsoft, Adobe, Infosys, TCS, Wipro, HCL Technologies, Capgemini, Cognizant\n- Scope: Suspension applies to new and pending PERM applications. Existing approvals remain valid\n- Reason: Alleged misuse of the H-1B visa program and green card sponsorships\nWhat is PERM?\nPERM (Permanent Labor Certification) is the first step for employer-sponsored green cards.\n- Employers must prove no qualified US workers are available\n- Hiring foreign workers won’t harm wages or conditions of American workers\nImpact on Indian IT & Workers\n| Impact Area | Details | \n|---|---|\n| Indian IT Firms | Infosys, TCS, Wipro, HCL, and Cognizant face disruption in sponsoring employees for US permanent residency | \n| Microsoft & Adobe | Criticized for layoffs while filing thousands of H-1B and PERM applications | \n| Indian Professionals | Thousands awaiting green card filings may face indefinite delays, increasing uncertainty for long-term US careers | \n| US Workforce | Administration claims this protects American jobs, especially after 131,000 tech layoffs in 2026 | \nPolitical & Regulatory Context\n- Vice President JD Vance accused Microsoft of “abusing the system,” citing 6,000 layoffs in 2025 while filing 6,300 H-1B visas and nearly 3,000 green cards\n- Trump Administration’s “Project Firewall” is intensifying scrutiny of H-1B and PERM programs, with over 200 active investigations\n- The Department of Labor claims to have uncovered $22 billion worth of visa fraud\nRisks & Challenges\n- Talent Retention: Indian IT firms may struggle to retain skilled workers in the US\n- Project Delivery: Long-term contracts could face disruption due to workforce instability\n- Legal Exposure: Companies risk reputational damage and penalties if fraud is proven\n- Worker Anxiety: Thousands of Indian professionals face uncertainty about their immigration status\nWhat’s Next?\n- No timeline announced for lifting suspensions\n- Existing approvals remain valid, but new sponsorships are frozen\n- Indian IT industry bodies (like Nasscom) are lobbying to distinguish talent mobility from immigration fraud",
+  "summary": "The US Department of Labor has announced suspension of Microsoft, Adobe, and six major IT firms—including Infosys, TCS, Wipro, HCL, Capgemini, and Cognizant—from the Permanent Labor Certification (PERM) program, citing alleged visa fraud and abuse. This halts new and pending green card sponsorships for foreign workers, a move that could significantly impact Indian IT professionals and outsourcing firms. On October 8, 2026, the U.S. Department of Labor, alongside Vice President JD Vance and Labor Secretary Keith Sonderling, formally declared the suspension of Microsoft, Adobe, Infosys, TCS, Wipro, HCL Technologies, Capgemini, and Cognizant from the PERM green card certification program.",
+  "companies": [
+    "Adobe",
+    "Capgemini",
+    "Cognizant",
+    "Department of Labor",
+    "HCL",
+    "HCL Technologies",
+    "Infosys",
+    "Microsoft",
+    "NASSCOM",
+    "Nasscom",
+    "TCS",
+    "Wipro"
+  ],
+  "people": [
+    "JD Vance",
+    "Keith Sonderling",
+    "Todd Blanche"
+  ],
+  "locations": [
+    "India",
+    "US",
+    "Washington, D.C."
+  ],
+  "category": "business",
+  "funding": null,
+  "provenance": {
+    "published_at_original": "2026-10-09T14:06:00+05:30",
+    "canonical_url": "https://www.indianweb2.com/2026/10/us-freezes-microsoft-adobe-indian-it.html",
+    "body_method": "trafilatura",
+    "reference_spans": 25,
+    "generic_missing_spans": 0,
+    "missing_output_spans": 0,
+    "raw_path": "raw/2bf2d452ef6073fa3233c9d90bc12aadeddd04af0ef6951a0ee8522fc3b2a391.html",
+    "raw_sha256": "53b211327a8ecfdcd6d11d3b68ea7b4612f5dca9e1717a9016fe3825ab944c75",
+    "extraction_version": "2.0.5",
+    "fingerprint": "5eff62c5a27eaaf529f879069e572b6861b8df9a6ba8f59e385c780078a4c4fb",
+    "nlp_model": "en_core_web_md",
+    "nlp_version": "3.8.0",
+    "summary_method": "extractive_lead_sentences",
+    "entity_backend": {
+      "model": "urchade/gliner_small-v2.1",
+      "revision": "4e091416cf7c3481db542c2a3d26156916f3a47f",
+      "files": {
+        "gliner_config.json": "6801cd2402bc8e18fcaf62dd9c8fbab4ebdf792bd1eb5e1c141fc917d682632b",
+        "model.safetensors": "a006bb8ab23b6fc28d0a0ab398729325ee3d781c58f87595c2f159396fa65a29",
+        "tokenizer.json": "396df3b5bbd9896069ab8d6473ae6f58f5627e0c4875663438cc0066296a00ac",
+        "tokenizer_config.json": "9e68fa829c3d566a23e830b44bbddabc0386d1602886a9e8277ee13cb723cfd8"
+      },
+      "gliner": "0.2.29",
+      "transformers": "5.16.1",
+      "torch": "2.14.1",
+      "threshold": 0.6,
+      "labels": [
+        "company",
+        "organization",
+        "person",
+        "location",
+        "product"
+      ],
+      "window_subtokens": 240,
+      "window_overlap_words": 15
+    },
+    "summary_sentences": [
+      "The US Department of Labor has announced suspension of Microsoft, Adobe, and six major IT firms—including Infosys, TCS, Wipro, HCL, Capgemini, and Cognizant—from the Permanent Labor Certification (PERM) program, citing alleged visa fraud and abuse.",
+      "This halts new and pending green card sponsorships for foreign workers, a move that could significantly impact Indian IT professionals and outsourcing firms.",
+      "On October 8, 2026, the U.S. Department of Labor, alongside Vice President JD Vance and Labor Secretary Keith Sonderling, formally declared the suspension of Microsoft, Adobe, Infosys, TCS, Wipro, HCL Technologies, Capgemini, and Cognizant from the PERM green card certification program."
+    ],
+    "entity_evidence": [
+      {
+        "field": "companies",
+        "value": "Microsoft",
+        "text": "Microsoft",
+        "start": 55,
+        "end": 64,
+        "label": "company",
+        "score": 0.9656274914741516
+      },
+      {
+        "field": "companies",
+        "value": "Adobe",
+        "text": "Adobe",
+        "start": 66,
+        "end": 71,
+        "label": "company",
+        "score": 0.9603058695793152
+      },
+      {
+        "field": "companies",
+        "value": "Infosys",
+        "text": "Infosys",
+        "start": 106,
+        "end": 113,
+        "label": "company",
+        "score": 0.9497706294059753
+      },
+      {
+        "field": "companies",
+        "value": "TCS",
+        "text": "TCS",
+        "start": 115,
+        "end": 118,
+        "label": "company",
+        "score": 0.9368458986282349
+      },
+      {
+        "field": "companies",
+        "value": "Wipro",
+        "text": "Wipro",
+        "start": 120,
+        "end": 125,
+        "label": "company",
+        "score": 0.9449629187583923
+      },
+      {
+        "field": "companies",
+        "value": "HCL",
+        "text": "HCL",
+        "start": 127,
+        "end": 130,
+        "label": "company",
+        "score": 0.7807390689849854
+      },
+      {
+        "field": "companies",
+        "value": "Capgemini",
+        "text": "Capgemini",
+        "start": 132,
+        "end": 141,
+        "label": "company",
+        "score": 0.9315864443778992
+      },
+      {
+        "field": "companies",
+        "value": "Cognizant",
+        "text": "Cognizant",
+        "start": 147,
+        "end": 156,
+        "label": "company",
+        "score": 0.9020564556121826
+      },
+      {
+        "field": "people",
+        "value": "JD Vance",
+        "text": "JD Vance",
+        "start": 482,
+        "end": 490,
+        "label": "person",
+        "score": 0.8816081285476685
+      },
+      {
+        "field": "people",
+        "value": "Keith Sonderling",
+        "text": "Keith Sonderling",
+        "start": 511,
+        "end": 527,
+        "label": "person",
+        "score": 0.8095610737800598
+      },
+      {
+        "field": "companies",
+        "value": "Microsoft",
+        "text": "Microsoft",
+        "start": 565,
+        "end": 574,
+        "label": "company",
+        "score": 0.97114098072052
+      },
+      {
+        "field": "companies",
+        "value": "Adobe",
+        "text": "Adobe",
+        "start": 576,
+        "end": 581,
+        "label": "company",
+        "score": 0.9685211777687073
+      },
+      {
+        "field": "companies",
+        "value": "Infosys",
+        "text": "Infosys",
+        "start": 583,
+        "end": 590,
+        "label": "company",
+        "score": 0.9406548142433167
+      },
+      {
+        "field": "companies",
+        "value": "TCS",
+        "text": "TCS",
+        "start": 592,
+        "end": 595,
+        "label": "company",
+        "score": 0.9240015149116516
+      },
+      {
+        "field": "companies",
+        "value": "Wipro",
+        "text": "Wipro",
+        "start": 597,
+        "end": 602,
+        "label": "company",
+        "score": 0.9403558373451233
+      },
+      {
+        "field": "companies",
+        "value": "HCL Technologies",
+        "text": "HCL Technologies",
+        "start": 604,
+        "end": 620,
+        "label": "company",
+        "score": 0.8662371039390564
+      },
+      {
+        "field": "companies",
+        "value": "Capgemini",
+        "text": "Capgemini",
+        "start": 622,
+        "end": 631,
+        "label": "company",
+        "score": 0.9358399510383606
+      },
+      {
+        "field": "people",
+        "value": "Keith Sonderling",
+        "text": "Keith Sonderling",
+        "start": 511,
+        "end": 527,
+        "label": "person",
+        "score": 0.9664456248283386
+      },
+      {
+        "field": "companies",
+        "value": "Microsoft",
+        "text": "Microsoft",
+        "start": 565,
+        "end": 574,
+        "label": "company",
+        "score": 0.9689527750015259
+      },
+      {
+        "field": "companies",
+        "value": "Adobe",
+        "text": "Adobe",
+        "start": 576,
+        "end": 581,
+        "label": "company",
+        "score": 0.9524215459823608
+      },
+      {
+        "field": "companies",
+        "value": "Infosys",
+        "text": "Infosys",
+        "start": 583,
+        "end": 590,
+        "label": "company",
+        "score": 0.9004987478256226
+      },
+      {
+        "field": "companies",
+        "value": "TCS",
+        "text": "TCS",
+        "start": 592,
+        "end": 595,
+        "label": "company",
+        "score": 0.896489679813385
+      },
+      {
+        "field": "companies",
+        "value": "Wipro",
+        "text": "Wipro",
+        "start": 597,
+        "end": 602,
+        "label": "company",
+        "score": 0.9074123501777649
+      },
+      {
+        "field": "companies",
+        "value": "HCL Technologies",
+        "text": "HCL Technologies",
+        "start": 604,
+        "end": 620,
+        "label": "company",
+        "score": 0.8941889405250549
+      },
+      {
+        "field": "companies",
+        "value": "Capgemini",
+        "text": "Capgemini",
+        "start": 622,
+        "end": 631,
+        "label": "company",
+        "score": 0.9060312509536743
+      },
+      {
+        "field": "companies",
+        "value": "Cognizant",
+        "text": "Cognizant",
+        "start": 637,
+        "end": 646,
+        "label": "company",
+        "score": 0.9478216171264648
+      },
+      {
+        "field": "locations",
+        "value": "Washington, D.C.",
+        "text": "Washington, D.C.",
+        "start": 748,
+        "end": 764,
+        "label": "location",
+        "score": 0.8475332856178284
+      },
+      {
+        "field": "companies",
+        "value": "Microsoft",
+        "text": "Microsoft",
+        "start": 926,
+        "end": 935,
+        "label": "company",
+        "score": 0.954415500164032
+      },
+      {
+        "field": "companies",
+        "value": "Adobe",
+        "text": "Adobe",
+        "start": 937,
+        "end": 942,
+        "label": "company",
+        "score": 0.9281566143035889
+      },
+      {
+        "field": "locations",
+        "value": "US",
+        "text": "US",
+        "start": 1477,
+        "end": 1479,
+        "label": "location",
+        "score": 0.7996143102645874
+      },
+      {
+        "field": "companies",
+        "value": "TCS",
+        "text": "TCS",
+        "start": 1630,
+        "end": 1633,
+        "label": "company",
+        "score": 0.9404633045196533
+      },
+      {
+        "field": "companies",
+        "value": "TCS",
+        "text": "TCS",
+        "start": 1630,
+        "end": 1633,
+        "label": "company",
+        "score": 0.954656720161438
+      },
+      {
+        "field": "locations",
+        "value": "India",
+        "text": "India",
+        "start": 1794,
+        "end": 1799,
+        "label": "location",
+        "score": 0.8587151765823364
+      },
+      {
+        "field": "companies",
+        "value": "NASSCOM",
+        "text": "NASSCOM",
+        "start": 1819,
+        "end": 1826,
+        "label": "organization",
+        "score": 0.6008667349815369
+      },
+      {
+        "field": "people",
+        "value": "JD Vance",
+        "text": "JD Vance",
+        "start": 2099,
+        "end": 2107,
+        "label": "person",
+        "score": 0.7239044308662415
+      },
+      {
+        "field": "people",
+        "value": "Todd Blanche",
+        "text": "Attorney General Todd Blanche",
+        "start": 2112,
+        "end": 2141,
+        "label": "person",
+        "score": 0.6830947995185852
+      },
+      {
+        "field": "people",
+        "value": "JD Vance",
+        "text": "JD Vance",
+        "start": 2099,
+        "end": 2107,
+        "label": "person",
+        "score": 0.7508099675178528
+      },
+      {
+        "field": "companies",
+        "value": "Microsoft",
+        "text": "Microsoft",
+        "start": 2165,
+        "end": 2174,
+        "label": "company",
+        "score": 0.9564418196678162
+      },
+      {
+        "field": "companies",
+        "value": "Adobe",
+        "text": "Adobe",
+        "start": 2176,
+        "end": 2181,
+        "label": "company",
+        "score": 0.9250237941741943
+      },
+      {
+        "field": "companies",
+        "value": "Infosys",
+        "text": "Infosys",
+        "start": 2183,
+        "end": 2190,
+        "label": "company",
+        "score": 0.9260001182556152
+      },
+      {
+        "field": "companies",
+        "value": "TCS",
+        "text": "TCS",
+        "start": 2192,
+        "end": 2195,
+        "label": "company",
+        "score": 0.9321354031562805
+      },
+      {
+        "field": "companies",
+        "value": "Wipro",
+        "text": "Wipro",
+        "start": 2197,
+        "end": 2202,
+        "label": "company",
+        "score": 0.936616063117981
+      },
+      {
+        "field": "companies",
+        "value": "HCL Technologies",
+        "text": "HCL Technologies",
+        "start": 2204,
+        "end": 2220,
+        "label": "company",
+        "score": 0.9256857633590698
+      },
+      {
+        "field": "companies",
+        "value": "Capgemini",
+        "text": "Capgemini",
+        "start": 2222,
+        "end": 2231,
+        "label": "company",
+        "score": 0.9421708583831787
+      },
+      {
+        "field": "companies",
+        "value": "Cognizant",
+        "text": "Cognizant",
+        "start": 2233,
+        "end": 2242,
+        "label": "company",
+        "score": 0.9591007828712463
+      },
+      {
+        "field": "companies",
+        "value": "Infosys",
+        "text": "Infosys",
+        "start": 2748,
+        "end": 2755,
+        "label": "company",
+        "score": 0.9734377861022949
+      },
+      {
+        "field": "companies",
+        "value": "TCS",
+        "text": "TCS",
+        "start": 2757,
+        "end": 2760,
+        "label": "company",
+        "score": 0.9537537097930908
+      },
+      {
+        "field": "companies",
+        "value": "Wipro",
+        "text": "Wipro",
+        "start": 2762,
+        "end": 2767,
+        "label": "company",
+        "score": 0.9618350863456726
+      },
+      {
+        "field": "companies",
+        "value": "HCL",
+        "text": "HCL",
+        "start": 2769,
+        "end": 2772,
+        "label": "company",
+        "score": 0.9542207717895508
+      },
+      {
+        "field": "companies",
+        "value": "Cognizant",
+        "text": "Cognizant",
+        "start": 2778,
+        "end": 2787,
+        "label": "company",
+        "score": 0.9740055203437805
+      },
+      {
+        "field": "locations",
+        "value": "US",
+        "text": "US",
+        "start": 2832,
+        "end": 2834,
+        "label": "location",
+        "score": 0.6941542029380798
+      },
+      {
+        "field": "companies",
+        "value": "Microsoft",
+        "text": "Microsoft",
+        "start": 2860,
+        "end": 2869,
+        "label": "company",
+        "score": 0.9508569240570068
+      },
+      {
+        "field": "companies",
+        "value": "Adobe",
+        "text": "Adobe",
+        "start": 2872,
+        "end": 2877,
+        "label": "company",
+        "score": 0.9031301736831665
+      },
+      {
+        "field": "locations",
+        "value": "US",
+        "text": "US",
+        "start": 3103,
+        "end": 3105,
+        "label": "location",
+        "score": 0.6206533312797546
+      },
+      {
+        "field": "people",
+        "value": "JD Vance",
+        "text": "JD Vance",
+        "start": 3266,
+        "end": 3274,
+        "label": "person",
+        "score": 0.9060982465744019
+      },
+      {
+        "field": "companies",
+        "value": "Microsoft",
+        "text": "Microsoft",
+        "start": 3283,
+        "end": 3292,
+        "label": "company",
+        "score": 0.9258431196212769
+      },
+      {
+        "field": "companies",
+        "value": "Department of Labor",
+        "text": "Department of Labor",
+        "start": 3544,
+        "end": 3563,
+        "label": "organization",
+        "score": 0.6328214406967163
+      },
+      {
+        "field": "companies",
+        "value": "Department of Labor",
+        "text": "Department of Labor",
+        "start": 3544,
+        "end": 3563,
+        "label": "organization",
+        "score": 0.6295104622840881
+      },
+      {
+        "field": "locations",
+        "value": "US",
+        "text": "US",
+        "start": 3722,
+        "end": 3724,
+        "label": "location",
+        "score": 0.8623601794242859
+      },
+      {
+        "field": "companies",
+        "value": "Nasscom",
+        "text": "Nasscom",
+        "start": 4164,
+        "end": 4171,
+        "label": "organization",
+        "score": 0.7464414238929749
+      },
+      {
+        "field": "companies",
+        "value": "Capgemini",
+        "text": "Capgemini",
+        "start": 132,
+        "end": 141,
+        "label": "reviewed_domain_vocabulary"
+      },
+      {
+        "field": "companies",
+        "value": "Capgemini",
+        "text": "Capgemini",
+        "start": 622,
+        "end": 631,
+        "label": "reviewed_domain_vocabulary"
+      },
+      {
+        "field": "companies",
+        "value": "Capgemini",
+        "text": "Capgemini",
+        "start": 2222,
+        "end": 2231,
+        "label": "reviewed_domain_vocabulary"
+      }
+    ],
+    "category_method": "headline_rules_then_source_labels",
+    "source_labels": [
+      "Business",
+      "employees",
+      "Immigration",
+      "IT industry",
+      "Jobs",
+      "TCS",
+      "United States",
+      "US VISA Microsoft",
+      "Wipro"
+    ]
+  },
+  "warnings": [
+    "entities_are_model_and_rule_predictions_not_exhaustive_verified_lists"
+  ]
+}

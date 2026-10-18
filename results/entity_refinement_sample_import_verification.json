@@ -1,0 +1,8 @@
+{
+  "extractor_version": "2.0.5",
+  "imported_pairs": 5,
+  "paired_bytes_match": true,
+  "existing_directory_refused": true,
+  "files_unchanged": true,
+  "passed": true
+}

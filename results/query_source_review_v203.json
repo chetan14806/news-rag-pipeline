@@ -1,0 +1,54 @@
+{
+  "reviewed_at": "2026-10-17T16:29:42.693884+00:00",
+  "scope": "Agent source/output review against saved publisher text; not independent human annotation or publisher fact verification.",
+  "reviews": [
+    {
+      "query_number": 1,
+      "question": "What are the main stories about AI in this collection?",
+      "answer_digest": "2d78183b7687b94999039fbbd70e4f191d1d317ac69e987650e6788af3618f15",
+      "judgment": "Supported extractive selection: five AI-related stories from 15 eligible articles, with exact source excerpts. This is not exhaustive thematic synthesis; the startup-ranking story is only partly about AI. Publisher claims were not independently fact-checked."
+    },
+    {
+      "query_number": 2,
+      "question": "Which startups raised funding in the last 7 days, and how much?",
+      "answer_digest": "0395e20db1a8e32f18d1b59b8cff58c440ed922788eb72b25a22b699cec82bc2",
+      "judgment": "Correct within the declared venture/publication scope: As You Asked 45 lakh INR, Circle 25 crore INR and ThinkMetal 27 crore INR; Inner Sky is explicitly closing and excluded from completed raises. Publication dates do not prove transaction dates; debt/support are excluded."
+    },
+    {
+      "query_number": 3,
+      "question": "What has ServiceNow announced recently?",
+      "answer_digest": "28722a7f14282bda3da555fd974b29d68d2786b7caa291f57051d0fc99a244f1",
+      "judgment": "Supported: the ServiceNow AI Passport announcement is within the disclosed 30-day publication window and the quoted passages describe its governance capabilities."
+    },
+    {
+      "query_number": 4,
+      "question": "List all articles that mention Bengaluru.",
+      "answer_digest": "ad41ab83405604d26a4064da953e08fd151f963674d7ebea5c28dab34441cf10",
+      "judgment": "Complete for explicit Bengaluru/Bangalore body mentions through the reference instant: all 14 matches agree with an independent word-boundary scan of all 81 records. Contextual mentions count; inferred locations do not."
+    },
+    {
+      "query_number": 5,
+      "question": "Summarise the news about layoffs this month.",
+      "answer_digest": "6d96e4f06a9587bcefd2e44f0ec0d92536b0b5ea5e1cf47af5ac4b67eeef7edf",
+      "judgment": "Correctly cautious: the two in-window articles contain ranking eligibility and historical/unconfirmed-time layoff context, not established new current-month layoffs. The older Infosys denial is outside the window; no claim is made that no layoffs occurred in reality."
+    },
+    {
+      "query_number": 6,
+      "question": "Who are the investors that appear in more than one funding round?",
+      "answer_digest": "87ec6557e8c0fb118803d877466ad93108ac7001de555dec3ef10d0bd3f3409d",
+      "judgment": "Correct over the declared extracted roster: no repeat among 23 named investors across nine reported venture announcements. Distinct IAN funds remain separate. Missing investors, excluded closing/debt/historical rounds and conservative event identity prevent a broader no-repeat claim."
+    },
+    {
+      "query_number": 7,
+      "question": "What did the article titled \"Adani Group Affiliate Plans ₹1,250 Cr IPO to Boost Solar Manufacturing\" say about its revenue figures?",
+      "answer_digest": "fbcf7ea71b2a00d201a12744b64c0068467deacd4a4a5008c5b1e873b71cbe89",
+      "judgment": "Supported: the source describes Vishakha Renewables and states FY26 revenue of INR 1,893.4 crore, up 24.8% YoY. The answer retains original context and does not substitute IPO proceeds, profit or Adani Group consolidated revenue."
+    },
+    {
+      "query_number": 8,
+      "question": "What is the weather in Mumbai today?",
+      "answer_digest": "10590424c5bace7172dc39224ee2c801b6ef6c1362b2fec643ff34a1c183ecfa",
+      "judgment": "Correct refusal: no live Mumbai weather claim, source invention or network lookup."
+    }
+  ]
+}

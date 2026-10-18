@@ -1,0 +1,24 @@
+{
+  "checked_at": "2026-10-18T03:23:50.701517+00:00",
+  "accepted": 81,
+  "verified": 81,
+  "failures": [],
+  "categories": {
+    "business": 26,
+    "AI": 12,
+    "funding": 14,
+    "technology": 29
+  },
+  "warnings": {
+    "entities_are_model_and_rule_predictions_not_exhaustive_verified_lists": 81,
+    "funding_investor_list_not_guaranteed_complete": 14,
+    "financial_support_committed_not_proven_disbursed": 1,
+    "funding_round_is_closing_not_reported_closed": 1,
+    "funding_amount_unknown_or_ambiguous": 2,
+    "shareholder_list_requires_full_manual_review": 1,
+    "funding_investors_unknown_or_unparsed": 2
+  },
+  "reference_spans": 1431,
+  "passed": true,
+  "scope": "Schema, hashes, summary evidence, and long body-span coverage; factual accuracy requires separate manual review."
+}

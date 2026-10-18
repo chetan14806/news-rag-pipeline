@@ -1,0 +1,68 @@
+{
+  "checked_at": "2026-10-17T12:43:57.939320+00:00",
+  "same_state_digest": true,
+  "probes_compared": 10,
+  "comparisons": [
+    {
+      "question": "How can companies control and supervise the use of artificial intelligence across their operations?",
+      "same_chunk_ids_and_order": true,
+      "same_text_and_metadata": true,
+      "max_distance_difference": 0.0
+    },
+    {
+      "question": "A passport for managing enterprise AI governance",
+      "same_chunk_ids_and_order": true,
+      "same_text_and_metadata": true,
+      "max_distance_difference": 0.0
+    },
+    {
+      "question": "Which startup received investment to make buying used goods more trustworthy with AI?",
+      "same_chunk_ids_and_order": true,
+      "same_text_and_metadata": true,
+      "max_distance_difference": 0.0
+    },
+    {
+      "question": "Funding for an Indian secondhand resale marketplace",
+      "same_chunk_ids_and_order": true,
+      "same_text_and_metadata": true,
+      "max_distance_difference": 0.0
+    },
+    {
+      "question": "Investment to expand domestically developed precision metal manufacturing",
+      "same_chunk_ids_and_order": true,
+      "same_text_and_metadata": true,
+      "max_distance_difference": 0.0
+    },
+    {
+      "question": "Who backed the Indian metal 3D printing startup's expansion?",
+      "same_chunk_ids_and_order": true,
+      "same_text_and_metadata": true,
+      "max_distance_difference": 0.0
+    },
+    {
+      "question": "Aircraft engine maker intends to buy much more from Indian suppliers",
+      "same_chunk_ids_and_order": true,
+      "same_text_and_metadata": true,
+      "max_distance_difference": 0.0
+    },
+    {
+      "question": "Plans to almost double local sourcing expenditure for India's aviation growth",
+      "same_chunk_ids_and_order": true,
+      "same_text_and_metadata": true,
+      "max_distance_difference": 0.0
+    },
+    {
+      "question": "Restrictions on technology firms sponsoring permanent residency for foreign workers in America",
+      "same_chunk_ids_and_order": true,
+      "same_text_and_metadata": true,
+      "max_distance_difference": 0.0
+    },
+    {
+      "question": "Green card sponsorship freeze affecting software companies",
+      "same_chunk_ids_and_order": true,
+      "same_text_and_metadata": true,
+      "max_distance_difference": 0.0
+    }
+  ],
+  "passed": true
+}

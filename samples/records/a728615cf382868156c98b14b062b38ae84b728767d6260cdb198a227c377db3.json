@@ -1,0 +1,433 @@
+{
+  "id": "a728615cf382868156c98b14b062b38ae84b728767d6260cdb198a227c377db3",
+  "url": "https://www.indianweb2.com/2026/10/servicenow-launches-ai-passport-to.html",
+  "title": "ServiceNow Launches AI Passport to Reinvent Enterprise AI Governance",
+  "author": [
+    "IndianWeb2 Desk"
+  ],
+  "published_at": "2026-10-16T09:54:00Z",
+  "body": "ServiceNow advances its operational harness for enterprise AI with AI Passport and expanded governance capabilities\nNew AI Passport solution verifies first- and third-party AI agents’ scopes in real time\nSuper Intelligence Control Tower expands discovery, visibility, control, and cost-to-value measurement capabilities on a single data model\n| |\n| |\nServiceNow (NYSE: NOW), the Super Intelligence Control Tower for business reinvention, today announced a new AI Passport solution and significant advances in AI governance to help ensure AI agents are production-ready by combining runtime governance, platform integration, and comprehensive oversight, all inside ServiceNow’s operational AI harness. Specifically, AI Passport is a new authority layer that gives enterprises runtime control over what AI agents and Model Context Protocol (MCP) servers are authorized to do at every point in a multi-agent workflow. ServiceNow also enables enterprises to discover what AI is running, control what AI agents do, and measure spend against outcomes with a broadened set of governance capabilities.\nAI agents need more than a reasoning model to execute enterprise workflows securely. They need structure: which data or tools they can access, clear rules for what actions they’re allowed to do, and an auditable record of who authorized it. ServiceNow provides the operational foundation that helps enterprises make AI agents safe for production. AI Passport is a cryptographically signed credential that AI agents refer to at runtime, including environments such as NVIDIA OpenShell, to verify their authorized scope, grounded in enterprise business context for governed decisions. When an AI agent stays within its passport scope, it can operate freely. When it drifts, graduated responses can be enforced — redirecting, restricting, or reconnecting the AI agent with proper context — including kill switch capabilities at machine speed if termination is needed. ServiceNow’s Super Intelligence Control Tower keeps the full audit record behind actions, transforming AI agent execution into governed, auditable, and accountable work.\n\"As AI agents proliferate across the enterprise, visibility alone isn’t enough. Enterprises need confidence that every AI agent is operating within its authorized scope,” said Jon Sigler, executive vice president and general manager, AI Platform at ServiceNow. “ServiceNow closes that gap with an operational harness across AI Passport and new capabilities that unify agent authority, governance, and operational oversight so enterprises can scale agentic AI with control.\"\nAI Passport: attested authority, enforceable at the edge\nAI Passport is built on open specifications so that any governance product, identity provider, or enforcement point can issue and verify credentials for their own and third-party AI agents. Credentials are verifiable at every step in multi-agent workflows.\nThis represents a fundamental shift from reaction to prevention. Unlike audit trails, which show what happened after the fact, AI Passport helps prevent AI agents from acting outside their scope by authorizing what they can do at runtime. It brings ServiceNow’s ‘Shift Zero’ approach to life: secure by design, at inception. Each AI agent receives its own AI Passport, issued by the Super Intelligence Control Tower and grounded in the enterprise's live business context through ServiceNow Configuration Management Database (CMDB), Governance, Risk, and Compliance (GRC) policies, and workflow approvals. For third-party AI agents especially, this creates a verifiable permissions record rather than relying on the AI agent’s own ‘claims’ about its permissions.\nThe approach to AI Passport enables precision revocation and scoped delegation that narrows at each step for third-party agent governance, along with audit trails that include full compliance signatures. ServiceNow is also announcing NVIDIA as a design and launch partner, building a production-ready enforcement implementation using the NVIDIA Open Agent Safety Platform, which features NVIDIA OpenShell open-source secure runtime software and the NVIDIA Sentry security framework.\n\"As enterprises shift from experimenting with agents to running them in production, securing those agents demands enforcement at the infrastructure layer,\" said Itay Ozery, director of Product Marketing for Networking and Cybersecurity at NVIDIA. \"By implementing AI Passport with the NVIDIA Open Agent Safety Platform, ServiceNow customers can continuously verify and enforce what every agent is authorized to do — at machine speed and at runtime.\"\nUnified discovery, visibility, and measurement\nIn addition to AI Passport, ServiceNow delivers end-to-end AI governance on one unified platform across discovery, visibility, control, measurement, and compliance. The new capabilities announced today build on ServiceNow’s autonomous remediation and kill switch capabilities that empower enterprises to act with speed.\nShadow AI detection that finds unapproved AI agents running in the network\n400+ out-of-box connectors that will enable AI discovery across platforms and vendors\nAccess mapping that grounds authorization decisions in actual entitlements\nContinuous enterprise AI observability that keeps track of AI agent traces and behavior\nBeyond discovering what AI is running, enterprises need visibility into whether that AI is delivering value and operating within budget. ServiceNow is announcing:\nCost governance that tracks user, department, and runtime spending\nValue intelligence that connects consumption, cost, quality, and realized user value\nAI Cost Management as part of IT Asset Management (ITAM), integrating frontier model, SaaS AI, hyperscaler, and GPU costs into a single view\nPolicy enforcement that will manage alert-to-throttle-to-block graduated responses\nAI control in highly regulated industries\nFor financial institutions, ungoverned assets and shadow AI multiply risk across compliance clocks. Regulators are shrinking incident notification windows far faster than manual, spreadsheet-driven programs can respond. ServiceNow's 2026 Banking AI Maturity Index reveals that gap: while 100 percent of banks report using AI, only 24 percent have the governance to match it.\nServiceNow's new Operational Resilience solution brings AI governance, risk, and security together in one place, with centralized data that helps financial institutions respond quickly. It gives CROs and CISOs the same real-time visibility and control. The Super Intelligence Control Tower senses ungoverned assets, identities, and AI agents across IT, OT, cloud, and third-party systems on one data model and unified platform. It is designed to treat a rogue AI agent like any other exposed asset: it finds it, flags it, and shuts it down, if needed.\nWhat customers are saying\nLTM Limited, \"As we accelerate LTM’s growth as an AI-led enterprise, we have deployed 1,500 AI agents across the organization, each assigned an employee ID and manager to ensure accountability, oversight, and continuous improvement,” said Chandan Pani, Chief Information Security Officer, LTM. \"ServiceNow’s control tower provides a single system of record for these AI agents, giving us centralized visibility into inventory, risk, and compliance. By streamlining AI asset management and strengthening governance, we expect to improve operational efficiency significantly.\"\nAvailability\nAI Passport, shadow AI detection, and AI Cost Management are expected to be available in Q4 2026. ServiceNow’s Operational Resilience solution for financial services is available today.\nAbout ServiceNow\nServiceNow (NYSE: NOW) is the Super Intelligence Control Tower for business reinvention. The ServiceNow platform integrates with any model, any cloud, and any data source to orchestrate, govern, and secure work across the agentic enterprise. ServiceNow gives customers the enterprise context and control to build and scale confidently.",
+  "summary": "ServiceNow (NYSE: NOW), the Super Intelligence Control Tower for business reinvention, today announced a new AI Passport solution and significant advances in AI governance to help ensure AI agents are production-ready by combining runtime governance, platform integration, and comprehensive oversight, all inside ServiceNow’s operational AI harness. Specifically, AI Passport is a new authority layer that gives enterprises runtime control over what AI agents and Model Context Protocol (MCP) servers are authorized to do at every point in a multi-agent workflow. ServiceNow also enables enterprises to discover what AI is running, control what AI agents do, and measure spend against outcomes with a broadened set of governance capabilities.",
+  "companies": [
+    "LTM",
+    "LTM Limited",
+    "NVIDIA",
+    "ServiceNow"
+  ],
+  "people": [
+    "Chandan Pani",
+    "Itay Ozery",
+    "Jon Sigler"
+  ],
+  "locations": [],
+  "category": "AI",
+  "funding": null,
+  "provenance": {
+    "published_at_original": "2026-10-16T15:24:00+05:30",
+    "canonical_url": "https://www.indianweb2.com/2026/10/servicenow-launches-ai-passport-to.html",
+    "body_method": "IndianWeb2 post-body/lxml",
+    "reference_spans": 36,
+    "generic_missing_spans": 2,
+    "missing_output_spans": 0,
+    "raw_path": "raw/a728615cf382868156c98b14b062b38ae84b728767d6260cdb198a227c377db3.html",
+    "raw_sha256": "f82590208170ab3f2a3589876c837fd5ff55f6e9877158cc40207d13f3c17877",
+    "extraction_version": "2.0.5",
+    "fingerprint": "f598acb043056ea775b0c1149e4b22a92346726357a6888df71cad9cf0977d88",
+    "nlp_model": "en_core_web_md",
+    "nlp_version": "3.8.0",
+    "summary_method": "extractive_lead_sentences",
+    "entity_backend": {
+      "model": "urchade/gliner_small-v2.1",
+      "revision": "4e091416cf7c3481db542c2a3d26156916f3a47f",
+      "files": {
+        "gliner_config.json": "6801cd2402bc8e18fcaf62dd9c8fbab4ebdf792bd1eb5e1c141fc917d682632b",
+        "model.safetensors": "a006bb8ab23b6fc28d0a0ab398729325ee3d781c58f87595c2f159396fa65a29",
+        "tokenizer.json": "396df3b5bbd9896069ab8d6473ae6f58f5627e0c4875663438cc0066296a00ac",
+        "tokenizer_config.json": "9e68fa829c3d566a23e830b44bbddabc0386d1602886a9e8277ee13cb723cfd8"
+      },
+      "gliner": "0.2.29",
+      "transformers": "5.16.1",
+      "torch": "2.14.1",
+      "threshold": 0.6,
+      "labels": [
+        "company",
+        "organization",
+        "person",
+        "location",
+        "product"
+      ],
+      "window_subtokens": 240,
+      "window_overlap_words": 15
+    },
+    "summary_sentences": [
+      "ServiceNow (NYSE: NOW), the Super Intelligence Control Tower for business reinvention, today announced a new AI Passport solution and significant advances in AI governance to help ensure AI agents are production-ready by combining runtime governance, platform integration, and comprehensive oversight, all inside ServiceNow’s operational AI harness.",
+      "Specifically, AI Passport is a new authority layer that gives enterprises runtime control over what AI agents and Model Context Protocol (MCP) servers are authorized to do at every point in a multi-agent workflow.",
+      "ServiceNow also enables enterprises to discover what AI is running, control what AI agents do, and measure spend against outcomes with a broadened set of governance capabilities."
+    ],
+    "entity_evidence": [
+      {
+        "field": "companies",
+        "value": "ServiceNow",
+        "text": "ServiceNow",
+        "start": 0,
+        "end": 10,
+        "label": "company",
+        "score": 0.9768579006195068
+      },
+      {
+        "field": "companies",
+        "value": "ServiceNow",
+        "text": "ServiceNow",
+        "start": 351,
+        "end": 361,
+        "label": "company",
+        "score": 0.9770549535751343
+      },
+      {
+        "field": "companies",
+        "value": "ServiceNow",
+        "text": "ServiceNow",
+        "start": 664,
+        "end": 674,
+        "label": "company",
+        "score": 0.9761247038841248
+      },
+      {
+        "field": "companies",
+        "value": "ServiceNow",
+        "text": "ServiceNow",
+        "start": 915,
+        "end": 925,
+        "label": "company",
+        "score": 0.9644100069999695
+      },
+      {
+        "field": "companies",
+        "value": "ServiceNow",
+        "text": "ServiceNow",
+        "start": 1335,
+        "end": 1345,
+        "label": "company",
+        "score": 0.8424723148345947
+      },
+      {
+        "field": "companies",
+        "value": "NVIDIA",
+        "text": "NVIDIA",
+        "start": 1561,
+        "end": 1567,
+        "label": "company",
+        "score": 0.6921931505203247
+      },
+      {
+        "field": "companies",
+        "value": "ServiceNow",
+        "text": "ServiceNow",
+        "start": 1959,
+        "end": 1969,
+        "label": "company",
+        "score": 0.8584486246109009
+      },
+      {
+        "field": "people",
+        "value": "Jon Sigler",
+        "text": "Jon Sigler",
+        "start": 2305,
+        "end": 2315,
+        "label": "person",
+        "score": 0.9838559627532959
+      },
+      {
+        "field": "companies",
+        "value": "ServiceNow",
+        "text": "ServiceNow",
+        "start": 2378,
+        "end": 2388,
+        "label": "company",
+        "score": 0.9258896112442017
+      },
+      {
+        "field": "companies",
+        "value": "ServiceNow",
+        "text": "ServiceNow",
+        "start": 2391,
+        "end": 2401,
+        "label": "company",
+        "score": 0.9320021271705627
+      },
+      {
+        "field": "companies",
+        "value": "ServiceNow",
+        "text": "ServiceNow",
+        "start": 3166,
+        "end": 3176,
+        "label": "company",
+        "score": 0.9311526417732239
+      },
+      {
+        "field": "companies",
+        "value": "ServiceNow",
+        "text": "ServiceNow",
+        "start": 3166,
+        "end": 3176,
+        "label": "company",
+        "score": 0.9475533962249756
+      },
+      {
+        "field": "companies",
+        "value": "ServiceNow",
+        "text": "ServiceNow",
+        "start": 3396,
+        "end": 3406,
+        "label": "company",
+        "score": 0.9490703344345093
+      },
+      {
+        "field": "companies",
+        "value": "ServiceNow",
+        "text": "ServiceNow",
+        "start": 3883,
+        "end": 3893,
+        "label": "organization",
+        "score": 0.814905047416687
+      },
+      {
+        "field": "companies",
+        "value": "NVIDIA",
+        "text": "NVIDIA",
+        "start": 3913,
+        "end": 3919,
+        "label": "company",
+        "score": 0.989012598991394
+      },
+      {
+        "field": "companies",
+        "value": "NVIDIA",
+        "text": "NVIDIA",
+        "start": 4017,
+        "end": 4023,
+        "label": "company",
+        "score": 0.9894492626190186
+      },
+      {
+        "field": "companies",
+        "value": "NVIDIA",
+        "text": "NVIDIA",
+        "start": 4067,
+        "end": 4073,
+        "label": "company",
+        "score": 0.988629937171936
+      },
+      {
+        "field": "companies",
+        "value": "NVIDIA",
+        "text": "NVIDIA",
+        "start": 4128,
+        "end": 4134,
+        "label": "company",
+        "score": 0.9825127124786377
+      },
+      {
+        "field": "people",
+        "value": "Itay Ozery",
+        "text": "Itay Ozery",
+        "start": 4323,
+        "end": 4333,
+        "label": "person",
+        "score": 0.9839437007904053
+      },
+      {
+        "field": "companies",
+        "value": "NVIDIA",
+        "text": "NVIDIA",
+        "start": 4401,
+        "end": 4407,
+        "label": "company",
+        "score": 0.9095216989517212
+      },
+      {
+        "field": "companies",
+        "value": "NVIDIA",
+        "text": "NVIDIA",
+        "start": 4447,
+        "end": 4453,
+        "label": "company",
+        "score": 0.926280677318573
+      },
+      {
+        "field": "companies",
+        "value": "ServiceNow",
+        "text": "ServiceNow",
+        "start": 4482,
+        "end": 4492,
+        "label": "company",
+        "score": 0.8975789546966553
+      },
+      {
+        "field": "companies",
+        "value": "ServiceNow",
+        "text": "ServiceNow",
+        "start": 4687,
+        "end": 4697,
+        "label": "company",
+        "score": 0.9048281908035278
+      },
+      {
+        "field": "companies",
+        "value": "ServiceNow",
+        "text": "ServiceNow",
+        "start": 4687,
+        "end": 4697,
+        "label": "company",
+        "score": 0.9797430634498596
+      },
+      {
+        "field": "companies",
+        "value": "ServiceNow",
+        "text": "ServiceNow",
+        "start": 4870,
+        "end": 4880,
+        "label": "company",
+        "score": 0.986115574836731
+      },
+      {
+        "field": "companies",
+        "value": "ServiceNow",
+        "text": "ServiceNow",
+        "start": 5440,
+        "end": 5450,
+        "label": "company",
+        "score": 0.9661530256271362
+      },
+      {
+        "field": "companies",
+        "value": "ServiceNow",
+        "text": "ServiceNow",
+        "start": 6104,
+        "end": 6114,
+        "label": "company",
+        "score": 0.9834827184677124
+      },
+      {
+        "field": "companies",
+        "value": "ServiceNow",
+        "text": "ServiceNow",
+        "start": 6259,
+        "end": 6269,
+        "label": "company",
+        "score": 0.9903197288513184
+      },
+      {
+        "field": "companies",
+        "value": "LTM Limited",
+        "text": "LTM Limited",
+        "start": 6837,
+        "end": 6848,
+        "label": "company",
+        "score": 0.8703267574310303
+      },
+      {
+        "field": "companies",
+        "value": "LTM Limited",
+        "text": "LTM Limited",
+        "start": 6837,
+        "end": 6848,
+        "label": "company",
+        "score": 0.8155835270881653
+      },
+      {
+        "field": "people",
+        "value": "Chandan Pani",
+        "text": "Chandan Pani",
+        "start": 7076,
+        "end": 7088,
+        "label": "person",
+        "score": 0.9700683951377869
+      },
+      {
+        "field": "companies",
+        "value": "LTM",
+        "text": "LTM",
+        "start": 7126,
+        "end": 7129,
+        "label": "company",
+        "score": 0.6183090209960938
+      },
+      {
+        "field": "companies",
+        "value": "ServiceNow",
+        "text": "ServiceNow",
+        "start": 7132,
+        "end": 7142,
+        "label": "company",
+        "score": 0.7921016216278076
+      },
+      {
+        "field": "companies",
+        "value": "ServiceNow",
+        "text": "ServiceNow",
+        "start": 7523,
+        "end": 7533,
+        "label": "company",
+        "score": 0.9720029234886169
+      },
+      {
+        "field": "companies",
+        "value": "ServiceNow",
+        "text": "ServiceNow",
+        "start": 7617,
+        "end": 7627,
+        "label": "company",
+        "score": 0.956057608127594
+      },
+      {
+        "field": "companies",
+        "value": "ServiceNow",
+        "text": "ServiceNow",
+        "start": 7628,
+        "end": 7638,
+        "label": "company",
+        "score": 0.9335200190544128
+      },
+      {
+        "field": "companies",
+        "value": "ServiceNow",
+        "text": "ServiceNow",
+        "start": 7721,
+        "end": 7731,
+        "label": "company",
+        "score": 0.9554632306098938
+      },
+      {
+        "field": "companies",
+        "value": "ServiceNow",
+        "text": "ServiceNow",
+        "start": 7870,
+        "end": 7880,
+        "label": "company",
+        "score": 0.918965756893158
+      },
+      {
+        "field": "companies",
+        "value": "ServiceNow",
+        "text": "ServiceNow",
+        "start": 0,
+        "end": 10,
+        "label": "headline_subject"
+      }
+    ],
+    "category_method": "headline_rules_then_source_labels",
+    "source_labels": [
+      "AI Governance",
+      "Artificial Intelligence",
+      "E-governance",
+      "Enterprise AI",
+      "Governance",
+      "ServiceNow",
+      "Technology"
+    ]
+  },
+  "warnings": [
+    "entities_are_model_and_rule_predictions_not_exhaustive_verified_lists"
+  ]
+}

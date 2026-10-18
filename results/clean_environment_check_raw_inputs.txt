@@ -1,0 +1,7 @@
+{
+  "checked_at": "2026-10-18T03:28:45.065731+00:00",
+  "articles": 81,
+  "structurally_ready": 81,
+  "flagged": [],
+  "note": "Structural HTML/metadata readiness only, not full body extraction accuracy, entity validation, fact-checking or final schema acceptance."
+}

@@ -1,0 +1,81 @@
+{
+  "started_at": "2026-10-18T03:13:42.519025+00:00",
+  "passed": true,
+  "scope": "Development environment refresh after extractor revision 2.0.3; saved original HTML and models reused. No new publisher scrape.",
+  "workspace": "D:\\projects\\Zylabs_assignmnet",
+  "python": "D:\\projects\\Zylabs_assignmnet\\.venv\\Scripts\\python.exe",
+  "steps": [
+    {
+      "name": "dependencies",
+      "arguments": [
+        "-m",
+        "pip",
+        "check"
+      ],
+      "exit_code": 0,
+      "seconds": 6.41,
+      "log": "development_refresh_dependencies.txt"
+    },
+    {
+      "name": "tests",
+      "arguments": [
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exit_code": 0,
+      "seconds": 38.86,
+      "log": "development_refresh_tests.txt"
+    },
+    {
+      "name": "extraction",
+      "arguments": [
+        "extract.py"
+      ],
+      "exit_code": 0,
+      "seconds": 543.88,
+      "log": "development_refresh_extraction.txt"
+    },
+    {
+      "name": "extraction_audit",
+      "arguments": [
+        "tools/audit_extraction.py"
+      ],
+      "exit_code": 0,
+      "seconds": 20.81,
+      "log": "development_refresh_extraction_audit.txt"
+    },
+    {
+      "name": "index",
+      "arguments": [
+        "index.py"
+      ],
+      "exit_code": 0,
+      "seconds": 108.31,
+      "log": "development_refresh_index.txt"
+    },
+    {
+      "name": "index_audit",
+      "arguments": [
+        "tools/audit_index.py",
+        "--rerun"
+      ],
+      "exit_code": 0,
+      "seconds": 71.81,
+      "log": "development_refresh_index_audit.txt"
+    },
+    {
+      "name": "queries",
+      "arguments": [
+        "tools/evaluate_queries.py"
+      ],
+      "exit_code": 0,
+      "seconds": 102.31,
+      "log": "development_refresh_queries.txt"
+    }
+  ],
+  "finished_at": "2026-10-18T03:28:34.931707+00:00"
+}

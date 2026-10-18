@@ -1,0 +1,20 @@
+{
+  "scope": "Synthetic diagnostic fixtures only; actual 81-article corpus untouched.",
+  "redirect_identity": {
+    "status": "complete",
+    "ready_reported": 2,
+    "stored_records": 2,
+    "unique_final_urls": 1,
+    "duplicate_destinations": [
+      "https://www.indianweb2.com/2026/10/b.html"
+    ],
+    "finding": "Two discovered URLs resolving to one final article are stored/count as two articles."
+  },
+  "restart_cooldown": {
+    "first_status": "server_pause",
+    "second_status": "server_pause",
+    "requested_cooldown_seconds": 600,
+    "elapsed_before_next_article_attempt": 12.0,
+    "finding": "Run aborts correctly, but Retry-After is not persisted across immediate restarts; current README relies on operator waiting."
+  }
+}
