@@ -1,7 +1,7 @@
 # News RAG Pipeline — end-to-end implementation plan
 
 Date: 2026-10-17 (Asia/Kolkata)
-Status (updated 2026-10-18): extractor 2.0.5 retains paragraph/table and query/time fixes and corrects entity types in nine records, resolving the three recorded error cases. All 76 tests pass in both environments, all 81 records match byte-for-byte, the index contains 484 chunks, and the eight actual answers/review hashes remain unchanged. Five current sample pairs and the refreshed local archive are verified. See CURRENT_STATUS.md and results/entity_refinement_verification.json for the completed continuation; milestone sections below preserve development history. Two delivery gates remain: the narrated demo and remote repository/submission.
+Status (updated 2026-10-18): extractor 2.0.5 retains paragraph/table and query/time fixes and corrects entity types in nine records, resolving the three recorded error cases. All 76 tests pass in both environments, all 81 records match byte-for-byte, the index contains 484 chunks, and the eight actual answers/review hashes remain unchanged. Five current sample pairs and the refreshed local archive are verified. See CURRENT_STATUS.md and results/entity_refinement_verification.json for the completed continuation; milestone sections below preserve development history. The verified source is now published at https://github.com/chetan14806/news-rag-pipeline (initial application commit `65616c4`). The narrated demo and final assignment submission remain.
 Source of requirements: Zylabs_Intern_Coding_Assignment.pdf, all five pages.
 Continuing work record: PROJECT_LOG.md.
 

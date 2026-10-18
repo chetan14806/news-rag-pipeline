@@ -19,6 +19,6 @@ The two environments are on the same Windows host. Saved raw HTML and local mode
 
 ## Where to continue after another interruption
 
-There is no unfinished pipeline stage or in-progress rebuild at this checkpoint. Remaining delivery work is the narrated **3-5 minute demo**, followed by the **remote repository/submission**. See [demo guide](DEMO_GUIDE.md) and [delivery checklist](DELIVERY_CHECKLIST.md).
+There is no unfinished pipeline stage or in-progress rebuild at this checkpoint. The verified project is published at [chetan14806/news-rag-pipeline](https://github.com/chetan14806/news-rag-pipeline) on `main` (initial application commit `65616c4`). Remaining delivery work is the narrated **3-5 minute demo** and final assignment submission with both links. See [demo guide](DEMO_GUIDE.md) and [delivery checklist](DELIVERY_CHECKLIST.md).
 
 Remaining technical limits: entity omissions/type errors can still occur outside the reviewed cases, natural-language parsing supports bounded patterns and explicit flags, and model startup/full-index validation add latency. These are documented limits; the observed functional checks pass.
