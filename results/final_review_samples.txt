@@ -1,1 +1,0 @@
-Verified and packaged five original HTML/full-schema JSON pairs in samples/.

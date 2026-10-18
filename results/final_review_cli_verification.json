@@ -1,7 +1,0 @@
-{
-  "exit_code": 0,
-  "items_match_evaluation": true,
-  "items": 14,
-  "scope": "Actual query.py command in the isolated environment against its final persisted corpus/index.",
-  "passed": true
-}

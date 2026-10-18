@@ -5,13 +5,8 @@ __pycache__/
 .env.*
 !.env.example
 tmp/
-research/source_probe/*.bin
-research/pilot/**/raw/
-research/pilot/**/records/
-research/pilot/**/extraction-review.txt
 data/
 data-sample/
 dist/
 *.mp4
 *.zip
-Zylabs_Intern_Coding_Assignment.pdf

@@ -1,8 +1,0 @@
-{
-  "checked_at": "2026-10-18T04:52:40.326319+00:00",
-  "records": 81,
-  "complete_scan": true,
-  "failures": [],
-  "passed": true,
-  "scope": "Recompute metadata/body using the final 2.0.4 parser to detect any stale records after within-review table formatting changes. Publication timestamps compared as aware datetimes. Not an independent factual or NER accuracy assessment."
-}
