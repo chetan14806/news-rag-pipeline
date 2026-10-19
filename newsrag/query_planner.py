@@ -4,7 +4,77 @@ import unicodedata
 from datetime import datetime, timedelta, timezone
 from typing import Literal
 
-from pydantic import AwareDatetime, BaseModel, ConfigDict, model_validator
+from pydantic import AwareDatetime, BaseModel, ConfigDict, Field, model_validator
+
+
+AI_TERMS = re.compile(r'\b(?:ai|artificial intelligence|machine learning)\b', re.I)
+LAYOFF_TERMS = re.compile(
+    r'\b(?:layoffs?|laid off|lay off|job cuts?|downsizing|redundan\w*|'
+    r'(?:workforce|staff|headcount) (?:cuts?|reductions?))\b', re.I)
+INVESTOR_TERMS = re.compile(r'\b(?:investors?|backers?|funds?|investment firms?|venture capitalists?|vcs?)\b')
+REPEAT_TERMS = re.compile(
+    r'more than (?:one|1)|multiple|repeat\w*|recurring|two or more|at least (?:two|2)|'
+    r'several|across.*round|common to|shared (?:by|across)|different.*round|'
+    r'\b(?:two|three|four|five|six|seven|eight|nine|ten|[2-9]|\d{2,})\s+(?:funding\s+)?rounds\b')
+
+
+def trim_target(value):
+    """Keep a named target separate from supported trailing time/scope phrases."""
+    value = re.split(
+        r'\s+(?:(?:in|over|during|within|for)\s+(?:the\s+)?)?'
+        r'(?:(?:last|past|previous)\s+(?:\d+|seven|thirty)\s+days?|'
+        r'(?:last|past|previous)\s+week|(?:this|last|previous)\s+month|recently|lately)\b',
+        value, maxsplit=1, flags=re.I)[0]
+    value = re.split(r'\s+(?:in|from)\s+(?:this|the)\s+collection\b', value, maxsplit=1, flags=re.I)[0]
+    return value.strip(' .?"')
+
+
+def company_target(question):
+    patterns = [
+        r'^(?:(?:please\s+)?(?:tell me about|show me|give me|summari[sz]e|list|what are|what were)\s+)?'
+        r"(.+?)(?:['’]s|['’])\s+(?:(?:latest|recent|new)\s+)*(?:product\s+)?"
+        r'(?:launches|announcements|updates|releases|news)\b',
+        r'what (?:has|did|have) (.+?)\s+(?:announc\w*|launch\w*|introduc\w*|unveil\w*|releas\w*)\b',
+        r'^(?:(?:show|give)(?: me)?\s+)?(.+?)\s+company updates\b',
+        r'(?:announcements?|updates?|developments?|news|(?:product\s+)?launches|(?:product\s+)?releases)'
+        r'\s+(?:from|about|on|by|at)\s+(.+?)(?:\?|$)',
+        r"what(?: is|'s|’s) new (?:at|with|from) (.+?)(?:\?|$)",
+    ]
+    for pattern in patterns:
+        match = re.search(pattern, question, re.I)
+        if match:
+            target = trim_target(match.group(1))
+            if normalize(target) not in {'recent', 'latest', 'the', 'any', 'company', 'companies',
+                                         'ai', 'artificial intelligence', 'machine learning'}:
+                return target or None
+    return None
+
+
+def location_target(question):
+    match = re.search(r'(?:mention(?:s|ing)?|referr?ing to|refer(?:s)? to|references?(?: to)?|\bin)\s+(.+?)[.?]*$',
+                      question, re.I)
+    return trim_target(match.group(1)) if match else None
+
+
+def investor_clarification(q):
+    if re.search(r'\b(?:not|never)\b', q):
+        return ('This aggregation identifies repeated investors, not investors absent from other rounds. '
+                'Ask for investors in more than one funding round to use the supported operation.')
+    if re.search(r'\b(?:more than one|multiple|at least (?:two|2)|two or more|several)\s+'
+                 r'(?:startups?|companies|businesses)\b', q):
+        return ('Do you mean distinct companies or distinct funding rounds? This operation counts '
+                'investors across more than one conservatively distinct funding round; '
+                'company counts are a different calculation.')
+    # The supported aggregation is "more than one", not an arbitrary/exact threshold.
+    threshold = re.search(r'\b(two|three|four|five|six|seven|eight|nine|ten|\d+)\s+(?:funding\s+)?rounds\b', q)
+    different_comparison = re.search(
+        r'\b(?:exactly|only|at most|fewer than|less than|more than)\s+'
+        r'(?:two|2)\s+(?:funding\s+)?rounds\b', q)
+    if different_comparison or (threshold and threshold.group(1) not in {'two', '2'}):
+        return ('This aggregation reports investors in more than one distinct funding round. '
+                'Your exact or higher round-count condition needs a different calculation. '
+                'Ask for investors in multiple funding rounds to use the supported operation.')
+    return None
 
 
 def normalize(text):
@@ -22,6 +92,8 @@ class QueryPlan(BaseModel):
     location: str | None = None
     title: str | None = None
     time_policy: str = 'All stored publication dates through the reference instant'
+    # Emitted as the result's answer/status, without changing existing serialized plans.
+    clarification: str | None = Field(default=None, exclude=True)
 
     @model_validator(mode='after')
     def dates(self):
@@ -45,47 +117,51 @@ def plan_query(question, *, as_of=None, intent=None, company=None, location=None
     if not question.strip():
         raise ValueError('Question cannot be empty')
     q = normalize(question)
+    inferred_company = company_target(question) if not company else company
+    clarification = None
+    funding_question = bool(re.search(r'\b(?:funding|funded|financed)\b|fundrais\w*|\brais(?:e|ed|es|ing)\b|capital rais', q) or
+                            re.search(r'\b(?:secur(?:e|ed|es|ing)|obtain(?:ed|s|ing)?|'
+                                      r'receiv(?:e|ed|es|ing)|attract(?:ed|s|ing)?|land(?:ed|s|ing)?)\b'
+                                      r'(?:\s+\w+){0,4}\s+(?:investment|financing|capital|funding)\b', q))
+    startup_subject = bool(re.search(r'\b(?:which|what|list|show)(?: me)?\s+'
+                                     r'(?:(?:all|the|those)\s+)*(?:young\s+)?(?:startups?|companies)\b', q))
+    investor_subject = bool(INVESTOR_TERMS.search(q) or
+                            re.search(r'\bwho\b.*\b(?:backed|funded|financed|invested in)\b', q))
+    investor_question = bool(investor_subject and REPEAT_TERMS.search(q) and not startup_subject)
     if intent is None:
         if re.search(r'\b(weather|temperature|rain|raining)\b', q):
             intent = 'unsupported'
         elif re.search(r'\b(revenue|revenues|turnover|sales figures)\b', q):
             intent = 'revenue'
-        elif re.search(r'\b(investors?|backers?|funds?)\b', q) and re.search(r'more than one|multiple|repeat|two or more|several|across.*round|\b(?:two|[2-9]|\d{2,})\s+(?:funding\s+)?rounds\b', q):
+        elif re.search(r'\bearn(?:ed|s|ings)?\b', q):
+            intent = 'revenue'
+            clarification = ('Do you mean revenue or profit? "Earn" and "earnings" are ambiguous. '
+                             'Ask explicitly for revenue/turnover, or use --intent revenue if that is what you mean.')
+        elif investor_question:
             intent = 'investors'
-        elif re.search(r'layoffs?|laid off|job cuts?|downsizing|redundan', q):
+        elif LAYOFF_TERMS.search(q):
             intent = 'layoffs'
-        elif re.search(r'funding|fundrais|raised|raises|capital rais', q):
+        elif funding_question:
             intent = 'funding'
-        elif re.search(r'\b(ai|artificial intelligence|machine learning)\b', q) and not company and not re.search(r'what (?:has|did|have) .+? announc|company updates|(?:announcements?|updates?|news) (?:from|by) ', q):
-            intent = 'ai'
-        elif location or re.search(r'bengaluru|bangalore', q) or re.search(r'\b(all|list|every)\b.*\b(mention|mentions|mentioning|in)\b', q):
-            intent = 'location'
-        elif company or re.search(r'announc|company updates|recent updates|latest.*\bfrom\b|news (?:on|about)', q):
+        elif inferred_company and not location:
             intent = 'company'
-        elif re.search(r'\b(ai|artificial intelligence|machine learning)\b', q):
+        elif AI_TERMS.search(q) and not company:
             intent = 'ai'
+        elif location or re.search(r'\b(?:bengaluru|bangalore)\b', q) or re.search(
+                r'\b(?:articles?|stor(?:y|ies)|reports?)\b.*\b(?:mentions?|mentioning|referring to|references?|in)\b', q):
+            intent = 'location'
+        elif company or re.search(r'announc|company updates|recent updates|product launches|product releases|latest.*\bfrom\b|news (?:on|about)', q):
+            intent = 'company'
         else:
             intent = 'unsupported'
     if intent == 'company' and not company:
-        patterns = [r'what (?:has|did|have) (.+?) announc', r'(.+?) company updates',
-                    r'(?:announcements?|updates?|news) (?:from|about|on|by) (.+?)(?: recently| lately| this | in the | over the |\?|$)']
-        for pattern in patterns:
-            match = re.search(pattern, question, re.I)
-            if match:
-                company = match.group(1).strip(' ?"')
-                if normalize(company) in ('recent', 'latest', 'the', 'any'):
-                    company = None
-                break
-    if not location and re.search('bengaluru|bangalore', q):
+        company = inferred_company
+    if intent == 'investors':
+        clarification = investor_clarification(q)
+    if not location and re.search(r'\b(?:bengaluru|bangalore)\b', q):
         location = 'Bengaluru'
     if intent == 'location' and not location:
-        if re.search('bengaluru|bangalore', q):
-            location = 'Bengaluru'
-        else:
-            match = re.search(r'(?:mention(?:s|ing)?|\bin)\s+(.+?)[.?]*$', question, re.I)
-            location = match.group(1).strip(' .?') if match else None
-            if location:
-                location = re.split(r'\s+(?:(?:in|over|during)\s+(?:the\s+)?)?(?:(?:last|past|previous)\s+(?:\d+|seven|thirty)\s+days?|(?:last|past|previous)\s+week|(?:this|last|previous)\s+month|recently)\b', location, maxsplit=1, flags=re.I)[0].strip(' .?')
+        location = location_target(question)
     if intent == 'revenue' and not title:
         match = re.search(r'["“](.+?)["”]', question)
         title = match.group(1) if match else None
@@ -119,4 +195,5 @@ def plan_query(question, *, as_of=None, intent=None, company=None, location=None
     else:
         policy = 'Explicit publication window'
     return QueryPlan(intent=intent, question=question, as_of=now, since=since, before=before,
-                     company=company, location=location, title=title, time_policy=policy)
+                     company=company, location=location, title=title, time_policy=policy,
+                     clarification=clarification)

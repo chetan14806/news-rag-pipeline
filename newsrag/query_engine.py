@@ -5,14 +5,14 @@ from pathlib import Path
 
 from newsrag.embeddings import LocalEmbedder
 from newsrag.indexing import checked_index, load_inputs, validate_vectors
-from newsrag.query_planner import normalize, plan_query
+from newsrag.query_planner import LAYOFF_TERMS, normalize, plan_query
 from newsrag.storage import atomic_json, utc_now, writer_lock
 
 ALIASES = {'bengaluru': ['Bengaluru', 'Bangalore'], 'bangalore': ['Bengaluru', 'Bangalore'],
            'ge aerospace': ['GE Aerospace'], 'servicenow': ['ServiceNow'],
            'openai': ['OpenAI', 'Open AI']}
 AI = re.compile(r'\bAI\b|artificial intelligence|machine learning|generative AI', re.I)
-LAYOFF = re.compile(r'layoffs?|laid off|lay off|job cuts?|downsizing|redundan\w*|workforce reduction', re.I)
+LAYOFF = LAYOFF_TERMS
 
 
 def mentions(text, name):
@@ -67,12 +67,13 @@ def period_records(records, plan):
 
 def layoff_context(text, published_at):
     lower = text.casefold()
-    if re.search(r'no layoffs|not a downsizing|not.*lay(?:ing)? off|not eligible|\bif\b|could|may |might|rumou?r|denied|denies', lower):
+    negated = re.search(r'\b(?:no|not|without)\b.{0,40}' + LAYOFF.pattern, lower)
+    if negated or re.search(r'no layoffs|not a downsizing|not.*lay(?:ing)? off|not eligible|\bif\b|could|may |might|rumou?r|denied|denies', lower):
         return 'negated_conditional_or_speculative'
     years = {int(y) for y in re.findall(r'\b20\d{2}\b', text)}
     if years and any(y < published_at.year for y in years):
         return 'historical_context'
-    action = re.search(r'(?:announc\w*|will|plans? to|has|have)\b.{0,90}(?:lay off|laid off|layoffs|job cuts|workforce reduction)', lower)
+    action = re.search(r'(?:announc\w*|will|plans? to|has|have)\b.{0,90}' + LAYOFF.pattern, lower)
     if action and re.search(r'\btoday\b|\bthis month\b', lower):
         return 'current_article_event'
     return 'timing_or_event_unconfirmed'
@@ -139,6 +140,9 @@ def answer_records(plan, records, retrieve):
         available = [r for r in available if mentions(r.body, plan.company)]
     result['eligible_records_after_explicit_entity_filters'] = len(available)
     items, lines = [], []
+    if plan.clarification:
+        result.update(status='clarification_required', answer=plan.clarification)
+        return result
     if plan.intent == 'unsupported':
         result.update(status='unsupported', answer='I cannot answer that from this stored news collection. This interface supports AI stories, funding, company announcements, location mentions, layoffs, repeated investors and article-specific revenue. It does not fetch live information.')
         return result

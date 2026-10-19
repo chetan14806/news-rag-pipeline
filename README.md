@@ -68,6 +68,8 @@ Read [all eight sample answers](results/sample_queries.md). They use the collect
 
 - `--as-of`, `--since` and exclusive `--before` accept timezone-bearing ISO timestamps. Windows filter **publication dates**, not transaction dates. Last seven days is rolling; this month is a UTC calendar window; recent means 30 days. Explicit `--since`/`--before` replace inferred date bounds as a pair, with the reference-time cap retained.
 - Company/location/title ambiguity can be resolved with `--intent`, `--company`, `--location` and `--title`. `--json` includes exact source evidence and retrieval traces. Run any stage with `--help` for its options.
+- Related phrases share routing rules: for example, "secured investment" selects funding, "workforce reductions" selects layoffs, and "ServiceNow's latest product launches" selects company announcements. Company/place names and date windows are extracted separately; they are not restricted to the sample values. This remains a bounded rule-based interface, not unrestricted language understanding.
+- Ambiguous "earnings" requests ask whether you mean revenue or profit. Investor requests for distinct-company counts, exact counts or higher thresholds do not silently reuse the more-than-one-round calculation; they request clarification. Rephrase using the supported operation or use explicit flags when appropriate.
 - Bengaluru/Bangalore checks every accepted article body, including names missed by entity extraction. AI/company overviews show a relevance-ranked selection of up to five articles.
 - Funding lists reported startup venture announcements and distinguishes closing/committed rounds. Investor aggregation conservatively normalizes aliases and avoids counting ambiguous reports of the same company/round twice. Distinct funds under a parent remain distinct.
 - Layoff answers separate historical, conditional/negated/speculative and unresolved event timing. Revenue answers preserve period, forecasts and table context; funding/profit/valuation do not substitute for revenue.
@@ -82,7 +84,7 @@ Run the regression suite after setup:
 .venv\Scripts\python.exe -m unittest discover -s tests -v
 ```
 
-The development verification passed **76 tests**, reproduced **81 byte-identical extracted records** across two local environments, and checked **484 persisted chunks**, ten retrieval probes and 25 query cases. The eight required answers include source URLs and correctness judgments in the sample report. Financial extraction was checked against 91 declared checks across 18 development articles. Sample pairs retain exact original bytes and checksums. These are development/regression checks, not held-out accuracy estimates; source/output judgments were agent-reviewed, not independently human-annotated.
+The current regression suite passes **89 tests**, including additional paraphrase, entity-target, date-window, operation-precedence and ambiguity checks. Earlier pipeline verification reproduced **81 byte-identical extracted records** across two local environments and checked **484 persisted chunks**, ten retrieval probes and 25 query cases. A focused real-data replay also passes 62 query cases, including the original 25 checks and 37 additional paraphrase/clarification checks; all eight original sample answer payloads remain unchanged. The eight required answers include source URLs and correctness judgments in the sample report. Financial extraction was checked against 91 declared checks across 18 development articles. Sample pairs retain exact original bytes and checksums. These are development/regression checks, not held-out accuracy estimates; source/output judgments were agent-reviewed, not independently human-annotated.
 
 Accuracy is assessed by checking extracted fields against source text, validating exact evidence spans and manually reviewing sample answers for support. Exhaustive location results are also compared against an independent full-body scan rather than semantic top-k. Entity recall is not exhaustively measured, and fixing known errors does not establish perfect extraction.
 
@@ -98,4 +100,4 @@ With another week, I would add tested archive pagination, a larger independently
 
 ## Demo
 
-The required 3–5 minute narrated screen recording is pending. Its link will be added here after recording.
+The narrated screen recording has been recorded; its link will be added here when available.
