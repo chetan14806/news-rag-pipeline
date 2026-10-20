@@ -22,6 +22,9 @@ def load_inputs(root, ids=None):
     if manifest.get('complete_scan') is not True:
         raise ValueError('Extraction scan is incomplete; finish extraction first')
     store = RawStore(root)
+    if 'raw_inputs' in manifest and manifest['raw_inputs'] != {
+            ident: entry['sha256'] for ident, entry in store.state['articles'].items()}:
+        raise ValueError('Raw collection changed after extraction; run extract.py, then index.py')
     selected = set(ids) if ids is not None else set(manifest['records'])
     if selected - set(manifest['records']):
         raise ValueError('Requested IDs are not currently accepted')

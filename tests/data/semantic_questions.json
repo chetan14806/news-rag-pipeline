@@ -1,0 +1,24 @@
+{
+  "scope": "Frozen before semantic-primary implementation. Development questions may calibrate gates; heldout questions must not become routing examples. Local engineering evaluation, not independent human annotation or a claim about model pretraining.",
+  "development": {
+    "ai": ["Bring me up to speed on artificial intelligence coverage.", "Give a digest of machine learning developments.", "Which news concerns intelligent software?"],
+    "funding": ["Who managed to attract capital for their business?", "Show startup financing announcements and the sums involved.", "Which ventures obtained fresh backing?"],
+    "company": ["Catch me up on what ServiceNow has introduced.", "Any new releases by Orion Systems?", "What developments has Acme made public?"],
+    "location": ["Gather every report containing a reference to Mumbai.", "Find the coverage in which Pune is named.", "Which pieces of reporting mention New Delhi?"],
+    "layoffs": ["Who has been letting employees go?", "Where are firms shrinking their staff?", "Report on people losing their jobs at companies."],
+    "investors": ["Who backed exactly one financing round?", "Find the capital providers shared across deals.", "Which backers have invested in at least three companies?"],
+    "revenue": ["What sales income is stated in the selected article?", "Pull the turnover number from the report titled \"Quarterly figures\".", "How much revenue does this story attribute to the business?"],
+    "unsupported": ["Will my investment in AI stocks make money?", "Teach me to create a company and obtain funding.", "Write a fictional report about layoffs."]
+  },
+  "heldout": {
+    "ai": ["Walk me through the notable advances in artificial intelligence reported here.", "Put together a briefing on developments in machine intelligence.", "What has been happening in the world of learning algorithms?", "I want a roundup of news concerning AI systems.", "Which stories discuss applications of machine learning?"],
+    "funding": ["Which fledgling businesses brought in new investment, and what were the amounts?", "Tell me about enterprises that persuaded financiers to put money in.", "Identify startups that have replenished their coffers through investment.", "Give the businesses that received venture cash over the past seven days.", "Show the recipients of fresh startup capital."],
+    "company": ["Bring me the latest things ServiceNow has revealed.", "Tell me what Orion Systems has rolled out lately.", "What new offerings has Acme put on the market?", "Catch me up on announcements made by Novus AI.", "What has GE Aerospace been introducing to customers?"],
+    "location": ["Return the full set of stories where Bengaluru gets a mention.", "Collect every piece that makes reference to Bangalore.", "I need all coverage naming the city of Pune.", "Show the articles in which Mumbai appears.", "Which reports contain the place name New Delhi?"],
+    "layoffs": ["Which employers have shown workers the door?", "Where have teams been made smaller by cutting positions?", "Bring together accounts of corporate retrenchment.", "Tell me about businesses shedding employees.", "What reporting covers companies reducing their payroll headcount?"],
+    "investors": ["Which financiers can be found behind several separate raises?", "Find investors whose names recur across financing deals.", "Which investors participated in exactly one funding round?", "Which investors appeared in only one round?", "Who supplied capital to more than one distinct fundraising round?"],
+    "revenue": ["Locate the company's top-line figure in the article \"Annual Results\".", "What amount of sales revenue is given in the story \"Performance Update\"?", "Extract the reported turnover from \"Company Financials\".", "What does \"Quarterly Review\" disclose about income from sales?", "Find the revenue growth percentage stated in \"Results Announcement\"."],
+    "unsupported": ["Give me a reliable startup stock to buy today.", "Predict which company will fire staff next month.", "Create a joke about venture capital investors.", "Can you explain how to train an artificial intelligence system?", "Is Mumbai likely to get rain tomorrow?", "Who won yesterday's football game?", "Calculate the return I will make from this funding round.", "Write a poem celebrating ServiceNow's latest product.", "Find tomorrow's temperature for Bengaluru."],
+    "abstain": ["Compare funding amounts with revenue and employee reductions.", "Give me every investor's revenue and the startups that laid off people.", "Is this about funding or about layoffs?", "Tell me something interesting."]
+  }
+}

@@ -6,6 +6,8 @@ __pycache__/
 !.env.example
 tmp/
 data/
+!tests/data/
+!tests/data/*.json
 data-sample/
 dist/
 *.mp4

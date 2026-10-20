@@ -1,0 +1,13 @@
+{
+  "scope": "Frozen after inspecting the first two evaluation sets and correcting their failures. These 24 questions are separate from training and previous sets. Engineering acceptance evidence, not independent human annotation or a guarantee about unrestricted wording.",
+  "questions": {
+    "ai": ["Give a news digest about progress in AI.", "What do these reports say about advances in machine learning?", "Brief me on the artificial intelligence news we have collected."],
+    "funding": ["Which startups attracted venture investment recently, and how much did they receive?", "Show businesses that secured fresh startup financing this week.", "Name the startup capital recipients from the last seven days."],
+    "company": ["What has ServiceNow unveiled for its customers lately?", "Show announcements from GE Aerospace.", "What products has Orion Systems introduced recently?"],
+    "location": ["Find every news report whose body names Mumbai.", "Get the complete collection of articles mentioning Pune.", "Return every story containing a reference to Bengaluru."],
+    "layoffs": ["Which employers announced staff cuts this month?", "Gather the reporting on companies eliminating positions.", "Summarize the news of workforce reductions."],
+    "investors": ["Find investors shared by two or more fundraising rounds.", "Who participated in exactly one financing deal?", "Which backers provided capital in several distinct funding rounds?"],
+    "revenue": ["Give the revenue amount in the article \"Annual Financial Report\".", "What sales income is stated in \"Business Performance\"?", "Extract the turnover figure from the selected article."],
+    "unsupported": ["Teach me how to program a neural network from scratch.", "Invent a fictional story about a company receiving startup capital.", "Which startup shares will double in value next year?"]
+  }
+}

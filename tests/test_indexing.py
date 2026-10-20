@@ -84,6 +84,18 @@ class IndexingTests(unittest.TestCase):
     def search(self, **kwargs):
         return search(self.root, 'robot funding', embedder=self.embedder, **kwargs)
 
+    def test_new_raw_page_invalidates_extraction_coverage(self):
+        self.save()
+        path = self.root / 'extraction/manifest.json'
+        state = json.loads(path.read_text())
+        state['raw_inputs'] = {k: v['sha256'] for k, v in RawStore(self.root).state['articles'].items()}
+        atomic_json(path, state)
+        self.run_index()
+        url = 'https://www.indianweb2.com/2026/10/new-raw.html'
+        RawStore(self.root).save(url, Response(url, 200, {}, b'new raw page'), {}, 'test')
+        with self.assertRaisesRegex(ValueError, 'Raw collection changed'):
+            self.search()
+
     def test_chunk_bounds_offsets_coverage_and_overlap(self):
         body = '\n'.join(' '.join(f'word{i}' for i in range(253)) + '.' for _ in range(3))
         rows = chunk_body(body, TinyTokenizer())

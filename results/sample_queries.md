@@ -17,8 +17,8 @@ Selected 5 AI stories from 28 eligible articles using semantic search. This is a
   Source excerpt: Instead of keeping the results secret, they shared hundreds of these solutions online.
 
 - [Inner Sky Labs Unveils Kavach, Raises ₹300 Cr to Scale Physical AI](https://www.indianweb2.com/2026/10/inner-sky-labs-unveils-kavach-raises.html) — published 2026-10-10T12:31:00+00:00
-  Source excerpt: Ten years in the making, Inner Sky Labs exits stealth and unveils a full stack of foundation models for physical machines: how they sense the world, how they decide what to do — and Kavach, a safety layer that has the final word before anything moves.
-  Source excerpt: Inner Sky Labs today unveiled a complete stack of foundation models that lets machines sense, decide and act safely around people.
+  Source excerpt: Inner Sky Labs today unveiled a complete stack of foundation models that lets machines sense, decide and act safely around people. Every great leap in human productivity has come from a new kind of machine working alongside people: the loom, the steam engine, the industrial robot. Most of the world's economy, by some estimates as much as 80% of global GDP, is created in the physical world, where language models alone fall short. For a construction project in Delhi, a warehouse in Bhiwandi, a farm in Punjab or a car manufacturer in Stuttgart, physical AI means a smarter machine that follows their lead, intelligently takes the strain out of the job and lets their skill go further. A machine that works this close to people must be one they can trust, because a machine's mistake could hurt someone.
+  Source excerpt: Inner Sky Labs already knows what it means to be trusted with something fragile. It is the company behind Miko, the companion robot that has spent the past ten years engaging and educating children to improve their social-emotional skills and is now in more than 140 countries. An early version of the same safety thinking that has spent a decade deciding what Miko may say to a child is now the foundation deciding what any machine — an industrial arm, a delivery robot, a drone — is allowed to do. In an independent evaluation by BDO’s cyber security practice, Miko's safety system caught every unsafe prompt across seven public AI-safety benchmarks, ahead of four widely used commercial AI models, and ranked first at flagging unsafe AI responses. Full methodology at www.innerskylabs.ai. A decade spent earning a parent's trust with a robot for their child is now the foundation for earning a factory's, a hospital's, and a government's trust with machines that move.
 
 - [Eloelo Group Unveils Dolphin AI, an Agentic AI Studio Revolutionizing Multi‑Shot Video Production for Creators Worldwide](https://www.indianweb2.com/2026/09/eloelo-group-unveils-dolphin-ai-agentic.html) — published 2026-09-29T10:45:00+00:00
   Source excerpt: Built from Eloelo Group’s experience producing 5,000+ original dramas and testing 100,000+ creatives every month, Dolphin AI brings production technology developed at scale to creators globally.
@@ -29,11 +29,11 @@ Selected 5 AI stories from 28 eligible articles using semantic search. This is a
   Source excerpt: - Unveilr AI helps B2B and consumer brands generate qualified leads from Google and AI search engines, including ChatGPT, Perplexity, Gemini and Claude.
 
 - [Zepto Tops LinkedIn’s 2026 India Startup List for Fourth Year, AI and Quick Commerce Drive Momentum](https://www.indianweb2.com/2026/10/zepto-tops-linkedins-2026-india-startup.html) — published 2026-10-14T04:55:00+00:00
-  Source excerpt: LinkedIn, the world’s largest professional network, today unveiled its 2026 Top Startups India List, an annual ranking of emerging companies where careers can thrive.
-  Source excerpt: Based on exclusive LinkedIn data across employment growth, engagement, job interest, and attraction of top talent, the list offers professionals a view of companies gaining momentum and potential opportunities to explore in the country.
+  Source excerpt: Quick service and AI cos shape this year’s list
+  Source excerpt: AI remains a prominent theme, with six of the top 20 startups offering AI services at their core:
 
 Limits:
-- Extractive overview from source lead sentences. Company matches can describe third-party news about the company, not only statements issued by it. AI eligibility uses explicit title/body terms or category; incidental mentions can qualify and implicit AI references may be missed.
+- Extractive overview from source lead sentences, or matching body passages when leads omit the requested topic/company. Company matches can describe third-party news about the company, not only statements issued by it. AI eligibility uses explicit title/body terms or category; incidental mentions can qualify and implicit AI references may be missed.
 
 Sources:
 - [AI Cracks the Code: OpenAI Publishes Landmark Math Breakthroughs](https://www.indianweb2.com/2026/10/ai-cracks-code-openai-publishes.html)
@@ -42,7 +42,7 @@ Sources:
 - [Unveilr AI Raises Pre-Seed at ₹16.7 Crore Valuation from Aviral Bhatnagar’s AJVC to Turn AI Search into Leads](https://www.indianweb2.com/2026/10/unveilr-ai-raises-pre-seed-at-167-crore.html)
 - [Zepto Tops LinkedIn’s 2026 India Startup List for Fourth Year, AI and Quick Commerce Drive Momentum](https://www.indianweb2.com/2026/10/zepto-tops-linkedins-2026-india-startup.html)
 
-**Correctness judgment:** Supported extractive selection: five AI-related stories from 28 eligible articles, with exact source excerpts. Eligibility now includes body mentions; the selected five stories are unchanged. This is not exhaustive thematic synthesis; the startup-ranking story is only partly about AI. Publisher claims were not independently fact-checked.
+**Correctness judgment:** Supported extractive selection of five AI-related stories from 28 eligible articles at the frozen reference time. Source passages now include the AI angle when generic leads omit it. This is relevance-ranked coverage, not exhaustive thematic synthesis; the startup-ranking story is only partly about AI. Publisher claims were not independently fact-checked.
 
 ## 2. Which startups raised funding in the last 7 days, and how much?
 
@@ -87,7 +87,7 @@ Selected 1 company-related announcements from 1 eligible articles using semantic
   Source excerpt: Specifically, AI Passport is a new authority layer that gives enterprises runtime control over what AI agents and Model Context Protocol (MCP) servers are authorized to do at every point in a multi-agent workflow.
 
 Limits:
-- Extractive overview from source lead sentences. Company matches can describe third-party news about the company, not only statements issued by it. AI eligibility uses explicit title/body terms or category; incidental mentions can qualify and implicit AI references may be missed.
+- Extractive overview from source lead sentences, or matching body passages when leads omit the requested topic/company. Company matches can describe third-party news about the company, not only statements issued by it. AI eligibility uses explicit title/body terms or category; incidental mentions can qualify and implicit AI references may be missed.
 
 Sources:
 - [ServiceNow Launches AI Passport to Reinvent Enterprise AI Governance](https://www.indianweb2.com/2026/10/servicenow-launches-ai-passport-to.html)
@@ -167,7 +167,7 @@ The reviewed passages do not establish a new layoff event in the requested publi
   historical_context: - Vice President JD Vance accused Microsoft of “abusing the system,” citing 6,000 layoffs in 2025 while filing 6,300 H-1B visas and nearly 3,000 green cards
 
 Limits:
-- Conservative event/timing rules; publication month alone does not date a layoff. Relative today/this-month evidence is anchored to article publication, not the query date.
+- Conservative event/timing rules; publication month alone does not date a layoff. Relative today/this-month evidence is anchored to article publication, not the query date. Passages mixing conflicting event classifications remain unresolved.
 
 Sources:
 - [Zepto Tops LinkedIn’s 2026 India Startup List for Fourth Year, AI and Quick Commerce Drive Momentum](https://www.indianweb2.com/2026/10/zepto-tops-linkedins-2026-india-startup.html)
@@ -237,6 +237,7 @@ Sources:
 ## 8. What is the weather in Mumbai today?
 
 Corpus only. Reference time: 2026-10-17T12:00:00Z. All stored publication dates through the reference instant.
+Entity filters: company=any, location=Mumbai today.
 
 I cannot answer that from this stored news collection. This interface supports AI stories, funding, company announcements, location mentions, layoffs, repeated investors and article-specific revenue. It does not fetch live information.
 

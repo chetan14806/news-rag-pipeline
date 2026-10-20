@@ -1,4 +1,4 @@
-"""Explicit query families and reproducible UTC publication windows."""
+"""Semantic operation selection with explicit, validated query constraints."""
 import re
 import unicodedata
 from datetime import datetime, timedelta, timezone
@@ -7,15 +7,15 @@ from typing import Literal
 from pydantic import AwareDatetime, BaseModel, ConfigDict, Field, model_validator
 
 
-AI_TERMS = re.compile(r'\b(?:ai|artificial intelligence|machine learning)\b', re.I)
+GENERIC_TARGETS = {'recent', 'latest', 'the', 'any', 'company', 'companies', 'organization', 'group',
+                   'ai', 'artificial intelligence', 'machine learning', 'funding', 'funding rounds',
+                   'layoffs', 'job cuts', 'workforce reductions', 'staff cuts', 'revenue', 'sales',
+                   'news', 'business', 'technology', 'startups', 'startup', 'investors', 'investor'}
 LAYOFF_TERMS = re.compile(
     r'\b(?:layoffs?|laid off|lay off|job cuts?|downsizing|redundan\w*|'
+    r'cut(?:s|ting)?\s+(?:\d[\d,]*\s+)?(?:jobs|positions)|'
+    r'(?:employees|workers|staff|people)\s+(?:being\s+|were\s+|will be\s+)?let go|'
     r'(?:workforce|staff|headcount) (?:cuts?|reductions?))\b', re.I)
-INVESTOR_TERMS = re.compile(r'\b(?:investors?|backers?|funds?|investment firms?|venture capitalists?|vcs?)\b')
-REPEAT_TERMS = re.compile(
-    r'more than (?:one|1)|multiple|repeat\w*|recurring|two or more|at least (?:two|2)|'
-    r'several|across.*round|common to|shared (?:by|across)|different.*round|'
-    r'\b(?:two|three|four|five|six|seven|eight|nine|ten|[2-9]|\d{2,})\s+(?:funding\s+)?rounds\b')
 
 
 def trim_target(value):
@@ -26,6 +26,8 @@ def trim_target(value):
         r'(?:last|past|previous)\s+week|(?:this|last|previous)\s+month|recently|lately)\b',
         value, maxsplit=1, flags=re.I)[0]
     value = re.split(r'\s+(?:in|from)\s+(?:this|the)\s+collection\b', value, maxsplit=1, flags=re.I)[0]
+    value = re.split(r'\s+(?:in|during|for)\s+20\d{2}\b|\s+(?:this|last|previous)\s+year\b',
+                     value, maxsplit=1, flags=re.I)[0]
     return value.strip(' .?"')
 
 
@@ -50,9 +52,13 @@ def company_target(question):
                             r'(?:tools|technology|technologies|developments|research|news|stories)',
                             normalize(target)):
                 continue
-            if normalize(target) not in {'recent', 'latest', 'the', 'any', 'company', 'companies',
-                                         'ai', 'artificial intelligence', 'machine learning'}:
+            if normalize(target) not in GENERIC_TARGETS:
                 return target or None
+    # A proper name can be bound even when the rest of the question uses new
+    # wording. This only supplies a slot; it never chooses the operation.
+    match = re.search(r'(?i:\b(?:at|by|from|with)\s+)([A-Z][\w&.-]*(?:\s+[A-Z][\w&.-]*){0,4})', question)
+    if match and normalize(match.group(1)) not in GENERIC_TARGETS:
+        return trim_target(match.group(1))
     return None
 
 
@@ -62,29 +68,144 @@ def location_target(question):
     return trim_target(match.group(1)) if match else None
 
 
-def investor_clarification(q):
-    if re.search(r'\b(?:not|never)\b', q):
-        return ('This aggregation identifies repeated investors, not investors absent from other rounds. '
-                'Ask for investors in more than one funding round to use the supported operation.')
-    if re.search(r'\b(?:more than one|multiple|at least (?:two|2)|two or more|several)\s+'
-                 r'(?:startups?|companies|businesses)\b', q):
-        return ('Do you mean distinct companies or distinct funding rounds? This operation counts '
-                'investors across more than one conservatively distinct funding round; '
-                'company counts are a different calculation.')
-    # The supported aggregation is "more than one", not an arbitrary/exact threshold.
-    threshold = re.search(r'\b(two|three|four|five|six|seven|eight|nine|ten|\d+)\s+(?:funding\s+)?rounds\b', q)
-    different_comparison = re.search(
-        r'\b(?:exactly|only|at most|fewer than|less than|more than)\s+'
-        r'(?:two|2)\s+(?:funding\s+)?rounds\b', q)
-    if different_comparison or (threshold and threshold.group(1) not in {'two', '2'}):
-        return ('This aggregation reports investors in more than one distinct funding round. '
-                'Your exact or higher round-count condition needs a different calculation. '
-                'Ask for investors in multiple funding rounds to use the supported operation.')
+def location_constraint(question):
+    """Extract an explicit place phrase independently of the requested operation.
+
+    This is a body-mention filter, not an inference about company headquarters.
+    Funder phrases ("funding from X") are deliberately not location syntax.
+    """
+    text = re.sub(r'["“][^"”]*["”]', 'the quoted target', question)
+    # Overlapping matches allow "in one round in Pune" to reject the count
+    # phrase and still inspect the later, genuine place phrase.
+    patterns = [r'(?=\bin\s+(.+?)(?:[.?]|$))',
+                r'\b(?:stories|articles|reports|news)\b.*?\bfrom\s+(.+?)(?:[.?]|$)']
+    for pattern in patterns:
+        for match in re.finditer(pattern, text, re.I):
+            target = trim_target(match.group(1))
+            target = re.split(r'\s+(?:raised|secured|received|announced|that|which|who|this|during)\b',
+                              target, maxsplit=1, flags=re.I)[0].strip()
+            if count_condition(normalize(target)) is not None:
+                continue
+            if re.match(r'^(?:an?\s+)?(?:pre[-\s]?seed|seed|(?:pre[-\s]?)?series\b|'
+                        r'pre[-\s][a-z]\b|bridge\b)', target, re.I):
+                continue
+            if (not target or re.match(r'^(?:the|this|our|last|past|previous|recent|more|multiple|at|'
+                                       r'exactly|only|one|single|once|twice|two|three|several|each|every|any|all|seed|series|\d+)\b', target, re.I)
+                    or normalize(target) in {'ai', 'artificial intelligence', 'machine learning',
+                                             'funding', 'technology', 'business', 'total'}):
+                continue
+            return target
     return None
 
 
 def normalize(text):
     return ' '.join(re.findall(r'\w+', unicodedata.normalize('NFKC', text).casefold()))
+
+
+def catalog_mentions(question, names):
+    """Resolve named slots from current corpus vocabulary, independent of syntax."""
+    text = re.sub(r'["“][^"”]*["”]', '', question)
+    hits = []
+    for name in sorted(set(names), key=lambda n: (-len(n), n.casefold())):
+        if len(name.strip()) < 3 or normalize(name) in GENERIC_TARGETS:
+            continue
+        flags = 0 if name.isupper() and len(name) <= 4 else re.I
+        for match in re.finditer(r'(?<!\w)' + re.escape(name) + r'(?!\w)', text, flags):
+            if not any(match.start() >= left and match.end() <= right for left, right, _ in hits):
+                hits.append((match.start(), match.end(), name))
+    return list(dict.fromkeys(name for _, _, name in sorted(hits)))
+
+
+class CountCondition(BaseModel):
+    model_config = ConfigDict(extra='forbid')
+    unit: Literal['rounds', 'companies']
+    comparison: Literal['eq', 'gt', 'gte', 'lt', 'lte']
+    value: int = Field(ge=0)
+
+
+def count_condition(q):
+    """Parse an arithmetic constraint, without choosing the query operation."""
+    numbers = {word: value for value, word in enumerate(
+        ('zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'))}
+    q = re.sub(r'\bonce\b', 'one round', q)
+    q = re.sub(r'\btwice\b', 'two rounds', q)
+    number = r'(?:\d+|' + '|'.join(numbers) + r'|single|lone)'
+    match = re.search(r'\b(?:(exactly|only|at least|at most|more than|less than|fewer than|over|under)\s+)?'
+                      r'(' + number + r')\s+(?:(?:distinct|different|funding|financing|investment)\s+)*'
+                      r'(rounds?|raises?|deals?|financings?|companies|startups?|businesses)\b', q)
+    if match:
+        operator, raw, unit = match.groups()
+        value = int(raw) if raw.isdigit() else 1 if raw in {'single', 'lone'} else numbers[raw]
+        comparison = {'at least': 'gte', 'at most': 'lte', 'more than': 'gt', 'over': 'gt',
+                      'less than': 'lt', 'fewer than': 'lt', 'under': 'lt'}.get(operator, 'eq')
+        if not operator and re.match(r'\s+or more\b', q[match.end():]):
+            comparison = 'gte'
+        return CountCondition(unit='companies' if unit.startswith(('compan', 'startup', 'business')) else 'rounds',
+                              comparison=comparison, value=value)
+    match = re.search(r'\b(?:multiple|several)\s+(?:(?:funding|distinct|different|separate)\s+)*'
+                      r'(rounds?|raises?|deals?|financings?|companies|startups?|businesses)\b', q)
+    if match:
+        return CountCondition(unit='companies' if match.group(1).startswith(('compan', 'startup', 'business')) else 'rounds',
+                              comparison='gt', value=1)
+    return None
+
+
+def investor_clarification(condition):
+    if condition.unit != 'rounds':
+        return ('This operation counts distinct funding rounds, not distinct companies. '
+                'Use a round-count request or clarify the required company aggregation.')
+    if not ((condition.comparison == 'gt' and condition.value == 1) or
+            (condition.comparison == 'gte' and condition.value == 2)):
+        return ('This operation supports investors in more than one distinct funding round. '
+                f'Your requested condition ({condition.comparison} {condition.value}) needs a different '
+                'calculation and will not be silently replaced by repeated-investor results.')
+    return None
+
+
+def canonical_funding_round(value):
+    """Normalize stage spelling without equating different stages."""
+    text = re.sub(r'\b(?:funding|financing|round)\b', '', (value or '').casefold())
+    text = re.sub(r'[-\s]+', ' ', text).strip()
+    text = re.sub(r'\bpre\s*seed\b', 'pre seed', text)
+    text = re.sub(r'\bpre\s*series\b', 'pre series', text)
+    text = re.sub(r'^pre ([a-z])$', r'pre series \1', text)
+    return text
+
+
+def funding_constraints(question):
+    """Bind supported round stages; clarify filters the executor cannot apply.
+
+    This validates the selected operation, never chooses an operation.
+    """
+    text = re.sub(r'["“][^"”]*["”]', '', question)
+    rounds = list(dict.fromkeys(canonical_funding_round(match.group()) for match in re.finditer(
+        r'\b(?:pre[-\s]?seed|seed|(?:pre[-\s]?)?series\s+[a-z](?:\d+)?|pre[-\s][a-z]|bridge)\b', text, re.I)))
+    stage = rounds[0] if len(rounds) == 1 else None
+    if len(rounds) > 1:
+        return None, 'Specify one funding stage. Multiple-stage AND/OR filters are not supported.'
+    if re.search(r'\bseries\s+[a-z](?:\d+)?\s*(?:[/,&]|\band\b|\bor\b)\s*[a-z]\b', text, re.I):
+        return None, 'Specify one funding stage. Multiple-stage AND/OR filters are not supported.'
+    if re.search(r'\bseries\b', text, re.I) and not any('series' in value for value in rounds):
+        return stage, 'Specify an exact funding stage, such as seed or Series A.'
+    if re.search(r'\b(?:early[- ]stage|late[- ]stage|growth|angel)\s+(?:funding|financing|rounds?)\b', text, re.I):
+        return stage, 'That funding-stage classification is not supported. Specify an exact stage such as seed or Series A.'
+    monetary = re.search(r'[$₹€£]|\b(?:USD|INR|EUR|GBP|rupees?|dollars?|euros?|pounds?|'
+                        r'millions?|billions?|crores?|lakhs?|lacs?)\b|\b\d[\d,.]*\s*[kmb]\b', text, re.I)
+    bare_threshold = re.search(r'\b(?:above|below|over|under|more than|less than|at least|at most|between)\s+\d', text, re.I)
+    if monetary or (bare_threshold and count_condition(normalize(text)) is None):
+        return stage, ('Funding amount/currency filters are not supported. I cannot apply that monetary '
+                       'condition or convert currencies, so I will not return an unrestricted funding list. '
+                       'Ask for funding amounts without a monetary filter, optionally for one round stage.')
+    if re.search(r'\b(?:led|co[- ]led|backed|funded|financed|supported|sponsored)\s+by\b|'
+                 r'\b(?:funding|investment|backing|capital|money|financing|rounds?|raised|secured|'
+                 r'participation)\s+(?:from|by|with|involving)\b|'
+                 r'\b(?:from|with|involving)\s+(?:(?:multiple|several|\d+)\s+)?investors?\b|'
+                 r'\b(?:invested\s+in|[\w&.-]+-backed)\b|'
+                 r'\b(?:did|has|have)\s+.+?\s+(?:fund|back|finance|invest)\b', text, re.I):
+        return stage, ('Investor and lead-investor filters are not supported. Extracted investor lists '
+                       'can be incomplete and do not reliably identify who led a round. I will not '
+                       'substitute a company body-mention filter or an unrestricted funding list.')
+    return stage, None
 
 
 class QueryPlan(BaseModel):
@@ -98,6 +219,8 @@ class QueryPlan(BaseModel):
     location: str | None = None
     title: str | None = None
     time_policy: str = 'All stored publication dates through the reference instant'
+    count_condition: CountCondition | None = None
+    funding_round: str | None = Field(default=None, exclude_if=lambda value: value is None)
     # Emitted as the result's answer/status, without changing existing serialized plans.
     clarification: str | None = Field(default=None, exclude=True)
 
@@ -116,75 +239,137 @@ class QueryPlan(BaseModel):
 
 
 def plan_query(question, *, as_of=None, intent=None, company=None, location=None, title=None, since=None, before=None,
-               semantic_route=None):
+               semantic_route=None, entity_catalog=None):
     now = as_of or datetime.now(timezone.utc)
     if now.tzinfo is None:
         raise ValueError('Reference time must have a timezone')
     now = now.astimezone(timezone.utc)
+    explicit_location = location is not None
+    explicit_intent = intent is not None
     if not question.strip():
         raise ValueError('Question cannot be empty')
     # Preserve negation before punctuation normalization splits "didn't".
     q = normalize(re.sub(r"n['’]t\b", ' not', question, flags=re.I))
     inferred_company = company_target(question) if not company else company
     clarification = None
-    funding_question = bool(re.search(r'\b(?:funding|funded|financed)\b|fundrais\w*|\brais(?:e|ed|es|ing)\b|capital rais', q) or
-                            re.search(r'\b(?:secur(?:e|ed|es|ing)|obtain(?:ed|s|ing)?|'
-                                      r'receiv(?:e|ed|es|ing)|attract(?:ed|s|ing)?|land(?:ed|s|ing)?)\b'
-                                      r'(?:\s+\w+){0,4}\s+(?:investment|financing|capital|funding)\b', q))
-    startup_subject = bool(re.search(r'\b(?:which|what|list|show)(?: me)?\s+'
-                                     r'(?:(?:all|the|those)\s+)*(?:young\s+)?(?:startups?|companies)\b', q))
-    investor_subject = bool(INVESTOR_TERMS.search(q) or
-                            re.search(r'\bwho\b.*\b(?:backed|funded|financed|invested in)\b', q))
-    investor_question = bool(investor_subject and REPEAT_TERMS.search(q) and not startup_subject)
     if intent is None:
-        if re.search(r'\b(weather|temperature|rain|raining)\b', q) or re.search(
-                r'\b(?:poem|joke)\b|^(?:(?:please|can you|could you)\s+)?predict\b|'
-                r'\bshould i\b|\bhow (?:do|can|to|does)\b|'
-                r'\bexplain (?:how|why)\b', q):
+        if semantic_route is None:
             intent = 'unsupported'
-        elif re.search(r'\b(revenue|revenues|turnover|sales figures)\b', q):
-            intent = 'revenue'
-        elif re.search(r'\bearn(?:ed|s|ings)?\b', q):
-            intent = 'revenue'
-            clarification = ('Do you mean revenue or profit? "Earn" and "earnings" are ambiguous. '
-                             'Ask explicitly for revenue/turnover, or use --intent revenue if that is what you mean.')
-        elif investor_question:
-            intent = 'investors'
-        elif LAYOFF_TERMS.search(q):
-            intent = 'layoffs'
-        elif funding_question:
-            intent = 'funding'
-        elif inferred_company and not location:
-            intent = 'company'
-        elif AI_TERMS.search(q) and not company:
-            intent = 'ai'
-        elif location or re.search(r'\b(?:bengaluru|bangalore)\b', q) or re.search(
-                r'\b(?:articles?|stor(?:y|ies)|reports?)\b.*\b(?:mentions?|mentioning|referring to|references?|in)\b', q):
-            intent = 'location'
-        elif company or re.search(r'announc|company updates|recent updates|product launches|product releases|latest.*\bfrom\b|news (?:on|about)', q):
-            intent = 'company'
+            clarification = 'Semantic operation recognition is required. Supply a router or an explicit --intent.'
         else:
-            # Only unresolved wording reaches the local semantic fallback.
-            # Explicit flags and established arithmetic/ambiguity rules win.
-            # Similarity does not safely implement complements/negated filters.
-            intent = (semantic_route(question) if semantic_route and not
-                      re.search(r'\b(?:not|never|without|except|excluding)\b', q) else 'unsupported')
+            decision = semantic_route(question)
+            intent = decision['intent'] if isinstance(decision, dict) else decision
+            if isinstance(decision, dict) and not decision['accepted']:
+                clarification = ('I could not select a sufficiently clear operation from the question meaning. '
+                                 'Please clarify the request or specify --intent.')
+    # Slot parsing and arithmetic checks never override the semantic operation.
+    constraint_q = normalize(re.sub(r'["“][^"”]*["”]', '', question))
+    condition = count_condition(constraint_q)
+    funding_round = None
+    if intent in ('funding', 'investors'):
+        funding_round, funding_reason = funding_constraints(question)
+        clarification = clarification or funding_reason
+        if intent == 'investors' and funding_round and not funding_reason:
+            clarification = clarification or ('Funding-stage filters are not supported for investor aggregation. '
+                                             'Ask for a stage-filtered funding list or an unfiltered repeated-investor calculation.')
+    named_places = catalog_mentions(question, (entity_catalog or {}).get('locations', ()))
+    named_companies = catalog_mentions(question, (entity_catalog or {}).get('companies', ()))
+    shared_names = {normalize(name) for name in named_places} & {normalize(name) for name in named_companies}
+    if intent == 'location':
+        # A geographic mention must not acquire a second company filter merely
+        # because extraction assigned the same name to both entity types.
+        named_companies = [name for name in named_companies if normalize(name) not in shared_names]
+    elif intent == 'company' and inferred_company and normalize(inferred_company) in shared_names:
+        named_places = [name for name in named_places if normalize(name) != normalize(inferred_company)]
+    if intent != 'unsupported' and not company and named_companies:
+        if len(named_companies) == 1:
+            company = named_companies[0]
+        else:
+            clarification = clarification or 'Several companies were named. Specify one company with --company.'
+    if intent != 'unsupported' and not location and named_places:
+        canonical = list(dict.fromkeys('Bengaluru' if normalize(p) in {'bengaluru', 'bangalore'} else p for p in named_places))
+        if len(canonical) == 1:
+            location = canonical[0]
+        else:
+            clarification = clarification or 'Several places were named. Specify one location with --location.'
     if intent == 'company' and not company:
-        company = inferred_company
+        company = inferred_company if inferred_company not in named_places else None
     if intent == 'investors':
-        clarification = investor_clarification(q)
+        condition = condition or CountCondition(unit='rounds', comparison='gt', value=1)
+        clarification = clarification or investor_clarification(condition)
+        if re.search(r'\b(?:exactly|only|at least|at most|more than|less than|fewer than)\b'
+                     r'.{0,40}\b(?:rounds?|companies|startups?)\b', constraint_q) and count_condition(constraint_q) is None:
+            clarification = 'I could not parse that count condition. Specify a supported numeric round condition.'
+    elif condition is not None and intent != 'unsupported':
+        clarification = clarification or ('The selected operation does not implement this round/company-count '
+                         'condition. Please clarify the aggregation; I will not return an unrelated funding list.')
+    if intent == 'revenue' and not explicit_intent and re.search(r'\bearn(?:ed|s|ings)?\b', q) and not re.search(
+            r'\brevenues?\b|\bturnover\b|\bsales\b', q):
+        clarification = clarification or ('Do you mean revenue or profit? Earnings are ambiguous. '
+                         'Ask explicitly for revenue or use --intent revenue.')
+    if intent != 'unsupported' and re.search(r'\b(?:compare|comparison|versus|vs)\b', constraint_q):
+        clarification = clarification or ('Comparative calculations are not implemented by these operations. '
+                         'Ask one operation at a time or specify the required comparison.')
+    # Check every recognized operation, not just unresolved semantic wording.
+    # Quoted titles/names describe targets rather than negative query filters.
+    filter_text = re.sub(r'["“][^"”]*["”]', '', question)
+    filter_text = normalize(re.sub(r"n['’]t\b", ' not', filter_text, flags=re.I))
+    if intent != 'unsupported' and re.search(
+            r'\b(?:no|not|never|without|except|excluding|exclude|neither|nor)\b|\bother than\b', filter_text):
+        clarification = ('Negative and exclusion filters are not supported. Please ask for a positive '
+                         'match, or split the request into separate queries; I will not silently '
+                         'return the opposite set.')
     if not location and re.search(r'\b(?:bengaluru|bangalore)\b', q):
         location = 'Bengaluru'
     if intent == 'location' and not location:
         location = location_target(question)
+    elif not location:
+        location = location_constraint(question)
+    requested_place = location_target(question) if intent == 'location' else location_constraint(question)
+    if not explicit_location and requested_place and re.search(r'\b(?:and|or)\b|[,;]', requested_place, re.I):
+        clarification = clarification or ('Please specify one location with --location. Multiple locations '
+                         'and AND/OR combinations require separate queries; I will not treat them as one place.')
+    if intent == 'company' and company and location:
+        company = re.sub(r'\s+in\s+' + re.escape(location) + r'\s*$', '', company, flags=re.I)
     if intent == 'revenue' and not title:
         match = re.search(r'["“](.+?)["”]', question)
         title = match.group(1) if match else None
     policy = 'All stored publication dates through the reference instant'
     # Explicit CLI bounds take precedence over natural-language defaults as a pair.
     if since is None and before is None:
+        date_text = re.sub(r'["“][^"”]*["”]', '', question)
+        for target in named_companies + named_places:
+            if target:
+                date_text = re.sub(r'(?<!\w)' + re.escape(target) + r'(?!\w)', '', date_text, flags=re.I)
+        date_q = normalize(date_text)
+        residual_dates = re.sub(
+            r'\b(?:last|past|previous)\s+(?:\d+|seven|thirty)\s+days?\b|'
+            r'\b(?:last|past|previous)\s+week\b|\b(?:this|last|previous)\s+(?:month|year)\b|'
+            r'\b(?:in|during|for)\s+20\d{2}\b', '', date_q)
+        unsupported_dates = re.search(
+            r'\b(?:yesterday|tomorrow|today|january|february|march|april|may|june|july|august|'
+            r'september|october|november|december|jan|feb|apr|jun|jul|aug|sep|sept|oct|nov|dec|'
+            r'monday|tuesday|wednesday|thursday|friday|saturday|sunday|quarter|q[1-4]|20\d{2})\b|'
+            r'\b(?:last|past|previous|next)\s+(?:the\s+)?(?:\w+\s+){0,2}'
+            r'(?:days?|weeks?|months?|years?|hours?)\b|'
+            r'\b(?:days?|weeks?|months?|years?|hours?)\b', residual_dates)
+        year_match = re.search(r'\b(?:in|during|for)\s+(20\d{2})\b', date_q)
+        relative_year = re.search(r'\b(this|last|previous)\s+year\b', date_q)
         days = re.search(r'(?:last|past|previous)\s+(\d+|seven|thirty)\s+days?', q)
-        if days:
+        if unsupported_dates:
+            if intent != 'unsupported':
+                clarification = clarification or ('I could not safely interpret the requested publication dates. '
+                                'Use --since and --before with timezone-bearing ISO timestamps, or a supported '
+                                'day/week/month/year window.')
+        elif year_match or relative_year:
+            year = int(year_match.group(1)) if year_match else now.year - int(relative_year.group(1) != 'this')
+            if year > now.year:
+                clarification = clarification or 'That publication year is after the reference time. Change --as-of or choose an earlier year.'
+            else:
+                since = now.replace(year=year, month=1, day=1, hour=0, minute=0, second=0, microsecond=0)
+                before = since.replace(year=year + 1)
+                policy = 'Requested UTC calendar year by publication time; reference-time cap retained'
+        elif days:
             number = {'seven': 7, 'thirty': 30}.get(days.group(1))
             number = int(days.group(1)) if number is None else number
             if not 1 <= number <= 3660:
@@ -211,4 +396,4 @@ def plan_query(question, *, as_of=None, intent=None, company=None, location=None
         policy = 'Explicit publication window'
     return QueryPlan(intent=intent, question=question, as_of=now, since=since, before=before,
                      company=company, location=location, title=title, time_policy=policy,
-                     clarification=clarification)
+                     clarification=clarification, count_condition=condition, funding_round=funding_round)

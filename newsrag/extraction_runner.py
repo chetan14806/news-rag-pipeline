@@ -18,6 +18,7 @@ def run_extraction(root: Path, *, limit=None, ids=None, force=False, nlp=None, p
         previous = json.loads(manifest_path.read_text(encoding='utf-8')) if manifest_path.exists() else {'records': {}}
         # Rebuild current eligibility from raw inputs on every run; never trust globbed records.
         current = {}
+        pending_ids, quarantined_ids = [], []
         selected = set(ids or [])
         entries = list(store.state['articles'].values())
         unknown = selected - {e['id'] for e in entries}
@@ -44,6 +45,8 @@ def run_extraction(root: Path, *, limit=None, ids=None, force=False, nlp=None, p
             if not should_process:
                 if cached:
                     current[ident] = {'path': relative, 'fingerprint': expected, 'sha256': sha256(path.read_bytes())}
+                else:
+                    pending_ids.append(ident)
                 continue
             summary['processed'] += 1
             try:
@@ -61,6 +64,7 @@ def run_extraction(root: Path, *, limit=None, ids=None, force=False, nlp=None, p
                 progress(f"[{summary['processed']}] {ident[:10]} {record.category}: {record.title}")
             except (ValueError, KeyError, TypeError, OSError) as error:
                 summary['failed'] += 1
+                quarantined_ids.append(ident)
                 append_json(root / 'extraction' / 'errors.jsonl', {
                     'run_id': run_id, 'at': utc_now(), 'id': ident, 'url': entry['url'],
                     'raw_sha256': entry['sha256'], 'error': str(error), 'status': 'quarantined'})
@@ -68,10 +72,13 @@ def run_extraction(root: Path, *, limit=None, ids=None, force=False, nlp=None, p
             # Publish acceptance after each result so a changed failure cannot stay current.
             atomic_json(manifest_path, {'schema_version': 1, 'updated_at': utc_now(), 'records': current,
                                         'complete_scan': False, 'run_id': run_id})
-        summary.update(accepted=len(current), finished_at=utc_now(),
-                       status='complete' if not summary['failed'] else 'partial_failure')
+        summary.update(accepted=len(current), pending=len(pending_ids), quarantined=len(quarantined_ids),
+                       finished_at=utc_now(), status='incomplete' if pending_ids else
+                       'partial_failure' if summary['failed'] else 'complete')
         atomic_json(manifest_path, {'schema_version': 1, 'updated_at': utc_now(), 'records': current,
-                                    'complete_scan': True, 'run_id': run_id})
+                                    'complete_scan': not pending_ids, 'run_id': run_id,
+                                    'pending_ids': pending_ids, 'quarantined_ids': quarantined_ids,
+                                    'raw_inputs': {e['id']: e['sha256'] for e in entries}})
         atomic_json(root / 'extraction' / 'runs' / f'{run_id}.json', summary)
         atomic_json(root / 'extraction' / 'latest.json', summary)
     return summary

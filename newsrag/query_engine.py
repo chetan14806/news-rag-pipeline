@@ -5,7 +5,8 @@ from pathlib import Path
 
 from newsrag.embeddings import LocalEmbedder
 from newsrag.indexing import checked_index, load_inputs, validate_vectors
-from newsrag.query_planner import LAYOFF_TERMS, normalize, plan_query
+from newsrag.query_planner import (LAYOFF_TERMS, normalize, plan_query, company_target,
+                                  GENERIC_TARGETS, canonical_funding_round)
 from newsrag.storage import atomic_json, utc_now, writer_lock
 from newsrag.semantic_router import SemanticRouter
 
@@ -37,19 +38,59 @@ def passages(body, pattern):
 def revenue_passages(body):
     lines = body.splitlines()
     found = []
-    metric = re.compile(r'(?:₹|\$|€|£|\bUSD\b|\bINR\b|\bRs\.?|crore|billion|million|percent|%|times|\b\d+X\b)', re.I)
+    number = r'\d[\d,]*(?:\.\d+)?'
+    value = (rf'(?:(?:₹|\$|€|£|\bUSD\b|\bINR\b|\bEUR\b|\bGBP\b|\bRs\.?)\s*{number}'
+             rf'(?:\s*(?:crores?|lakhs?|billion|million|thousand))?|'
+             rf'{number}\s*(?:crores?|lakhs?|billion|million|thousand|percent|%|times|x\b))')
+    label = r'\b(?:revenues?|turnover|sales)\b'
+    # A bounded vocabulary joins the metric to its value. Topic proximity alone
+    # would let "the revenue team raised $5 million" count as financial revenue.
+    period = r'(?:\s*\((?:FY\s*\d{2,4}|Q[1-4])[^()\n]{0,30}\))?'
+    bridge = (r'(?:\s|[:=,]|\b(?:was|were|is|are|of|at|stood|stands|totalled|totaled|'
+              r'amounted|reach|reached|reaches|grew|grown|rose|risen|fell|fallen|increased|'
+              r'decreased|declined|dropped|jumped|surged|growth|to|from|by|up|down|'
+              r'has|have|had|been|will|be|expected|projected|forecast|estimated|'
+              r'approximately|about|over|nearly|roughly)\b)*')
+    linked = re.compile(rf'{label}{period}{bridge}{value}|'
+                        rf'{value}\s+(?:(?:in|of)\s+)?'
+                        rf'(?:(?:annual|quarterly|net|gross|operating)\s+)*{label}', re.I)
+    table_label = re.compile(r'(?:net\s+|gross\s+|total\s+|operating\s+)?'
+                             r'(?:revenues?|turnover|sales)'
+                             r'(?:\s*(?:\([^()]*\)|USD|INR|EUR|GBP|Rs\.?|₹|\$|€|£))*', re.I)
+
+    def quantitative_sentence(sentence):
+        if re.search(r'\bundisclosed\b|\bnot\s+(?:yet\s+)?(?:disclosed|reported|available)\b|'
+                     r'\bnot\s+(?:disclose|report)\b', sentence, re.I):
+            return False
+        # User/employee counts are not financial amounts, even when scaled.
+        sentence = re.sub(rf'{number}\s*(?:billion|million|crore)?\s+'
+                          r'(?:users|customers|employees|jobs|workers)\b', '', sentence, flags=re.I)
+        return bool(linked.search(sentence))
     for i, line in enumerate(lines):
-        matches = list(re.finditer(r'\brevenues?\b|\bturnover\b', line, re.I))
-        if not matches:
+        if not re.search(label, line, re.I):
             continue
         if line.lstrip().startswith('|'):
+            start = i
+            while start > 0 and lines[start-1].lstrip().startswith('|'):
+                start -= 1
             end = i + 1
             while end < len(lines) and lines[end].lstrip().startswith('|'):
                 end += 1
-            block = '\n'.join(lines[i:end])
-            if re.search(r'\d', block):
-                found.append(block)
-        elif any(metric.search(line[max(0, m.start()-90):m.end()+120]) for m in matches):
+            block = '\n'.join(lines[start:end])
+            rows = [[cell.strip() for cell in row.strip().strip('|').split('|')]
+                    for row in lines[start:end]]
+            # A numeric cell must share a metric row or metric header column.
+            # A year elsewhere in a table does not establish a revenue value.
+            if any(table_label.fullmatch(cell) and (
+                    any(re.fullmatch(rf'{value}|{number}', other, re.I)
+                        for other in row[j+1:]) or
+                    any(len(later) > j and re.fullmatch(rf'{value}|{number}', later[j], re.I)
+                        for later in rows[k+1:]))
+                   for k, row in enumerate(rows) for j, cell in enumerate(row)):
+                if block not in found:
+                    found.append(block)
+        elif any(quantitative_sentence(sentence)
+                 for sentence in re.split(r'(?<=[.!?])\s+(?=[A-Z])', line)):
             found.append(line.strip())
     return found
 
@@ -67,17 +108,55 @@ def period_records(records, plan):
 
 
 def layoff_context(text, published_at):
-    lower = text.casefold()
-    negated = re.search(r'\b(?:no|not|without)\b.{0,40}' + LAYOFF.pattern, lower)
-    if negated or re.search(r'no layoffs|not a downsizing|not.*lay(?:ing)? off|not eligible|\bif\b|could|may |might|rumou?r|denied|denies', lower):
-        return 'negated_conditional_or_speculative'
-    years = {int(y) for y in re.findall(r'\b20\d{2}\b', text)}
-    if years and any(y < published_at.year for y in years):
-        return 'historical_context'
-    action = re.search(r'(?:announc\w*|will|plans? to|has|have)\b.{0,90}' + LAYOFF.pattern, lower)
-    if action and re.search(r'\btoday\b|\bthis month\b', lower):
-        return 'current_article_event'
-    return 'timing_or_event_unconfirmed'
+    labels = []
+    for sentence in re.split(r'(?<=[.!?])\s+(?=[A-Z])', text):
+        # Keep shared verbs/modals ("may expand and cut jobs") together, while
+        # separating independent subjects and subordinate financial context.
+        sentence = re.sub(r'\s+and\s+(?=(?:the|its|a|an)\s|[A-Z])', '; ', sentence)
+        clauses = re.split(r'\s*(?:;|,(?!\d))\s*|\s+(?:although|though|whereas|while|'
+                           r'after|because|but|compared\s+(?:with|to))\s+', sentence, flags=re.I)
+        for i, clause in enumerate(clauses):
+            event = LAYOFF.search(clause)
+            if not event:
+                continue
+            lower = clause.casefold()
+            prefix = lower[:event.start()]
+            suffix = lower[event.end():]
+            previous = clauses[i-1].casefold() if i else ''
+            following = clauses[i+1].casefold() if i+1 < len(clauses) else ''
+            # A leading conditional governs the following event, even across a
+            # comma. A detached year/relative-time header also dates that event.
+            conditional = re.match(r'\s*(?:if|unless)\b', previous)
+            conditional = conditional or re.match(r'\s*(?:if|unless)\b', following)
+            time_header = previous if re.fullmatch(
+                r'\s*(?:(?:back\s+)?in\s+20\d{2}|last\s+(?:year|month)|today|this month)\s*', previous) else ''
+            scoped = time_header + ' ' + lower
+            speculative = re.search(r'\b(?:may(?!\s+\d)|might|could|would|if|unless|'
+                                    r'rumou?r\w*|denied|denies|deny|consider\w*)\b', prefix)
+            negated = re.search(r'\b(?:no|not|never|without)\b', prefix)
+            post_modal = re.match(r'\s+(?:may|might|could|would|were denied|are denied|'
+                                  r'(?:will|did|do|does|are|were|is|was|have|has)\s+not)\b', suffix)
+            if conditional or speculative or negated or post_modal:
+                labels.append('negated_conditional_or_speculative')
+            elif len(list(LAYOFF.finditer(clause))) > 1:
+                labels.append('timing_or_event_unconfirmed')
+            elif any(int(year) < published_at.year for year in re.findall(r'\b20\d{2}\b', scoped)) or re.search(
+                    r'\blast\s+(?:year|month)\b', scoped):
+                labels.append('historical_context')
+            else:
+                action = re.search(r'\b(?:announc\w*|confirm\w*|report\w*)\b', prefix)
+                action = action or re.search(r'\b(?:will|plans? to)\s+(?:make\s+)?$', prefix)
+                direct = re.match(r'cuts?\b|laid off\b|'
+                                  r'(?:employees|workers|staff|people)\s+were\s+let go\b', event.group(), re.I)
+                direct = direct or (event.group().casefold().startswith('cutting ') and re.search(
+                    r'\b(?:is|are|was|were|has been|have been)\s+$', prefix))
+                if (action or direct) and re.search(r'\btoday\b|\bthis month\b', scoped):
+                    labels.append('current_article_event')
+                else:
+                    labels.append('timing_or_event_unconfirmed')
+    # The public evidence shape has one label per source passage. A passage with
+    # conflicting events cannot safely be summarized as a single current event.
+    return labels[0] if labels and len(set(labels)) == 1 else 'timing_or_event_unconfirmed'
 
 
 def organization_key(name):
@@ -159,13 +238,26 @@ def answer_records(plan, records, retrieve):
         result['limitations'].append('Matches explicit body mentions and configured spelling aliases; no inferred headquarters or geographic identity.')
     elif plan.intent == 'funding':
         pending = []
+        unknown_stage = 0
         for record in available:
             fund = record.funding
             if not fund or fund.kind != 'venture':
                 continue
+            if plan.funding_round:
+                if not fund.round:
+                    unknown_stage += 1
+                    continue
+                if canonical_funding_round(fund.round) != plan.funding_round:
+                    continue
             item = {**base_item(record, fund.evidence), 'funding': fund.model_dump(mode='json')}
             (items if fund.status == 'reported' else pending).append(item)
         lines.append(f'{len(items)} articles published in the window report startup venture funding. Publication date is not proof that the transaction happened in this window.')
+        if plan.funding_round:
+            result['funding_filter'] = {'round': plan.funding_round, 'unknown_stage_articles': unknown_stage}
+            lines.append(f'Applied exact funding-stage filter: {plan.funding_round}. '
+                         f'{unknown_stage} announcement(s) have an unknown stage and cannot be established as matches.')
+            if not items and unknown_stage:
+                result['status'] = 'insufficient_evidence'
         result['pending_financing'] = pending
         if pending:
             lines.append(f'{len(pending)} additional announcement(s) are closing/committed and are not counted as completed raises.')
@@ -196,7 +288,7 @@ def answer_records(plan, records, retrieve):
         lines.append(f'{len(items)} articles published in the window mention layoffs or related terms; {current} contain an explicit current-article event with relative timing.')
         if not current:
             lines.append('The reviewed passages do not establish a new layoff event in the requested publication window. Historical, negated, conditional or unresolved-time mentions are shown separately below; this does not prove no layoffs occurred.')
-        result['limitations'].append('Conservative event/timing rules; publication month alone does not date a layoff. Relative today/this-month evidence is anchored to article publication, not the query date.')
+        result['limitations'].append('Conservative event/timing rules; publication month alone does not date a layoff. Relative today/this-month evidence is anchored to article publication, not the query date. Passages mixing conflicting event classifications remain unresolved.')
     elif plan.intent == 'revenue':
         if not plan.title:
             result.update(status='clarification_required', answer='Provide the exact article title in double quotes or with --title.')
@@ -237,9 +329,14 @@ def answer_records(plan, records, retrieve):
         selected = [records[i] for i in order[:5]]
         for record in selected:
             quotes = record.provenance['summary_sentences'][:2]
+            if plan.intent == 'ai' and not any(AI.search(quote) for quote in quotes):
+                quotes = passages(record.body, AI)[:2] or quotes
+            elif plan.intent == 'company' and not any(mentions(quote, plan.company) for quote in quotes):
+                quotes = [line.strip() for line in record.body.splitlines()
+                          if line.strip() and mentions(line, plan.company)][:2] or quotes
             items.append(base_item(record, quotes))
         lines.append(f"Selected {len(items)} {'AI stories' if plan.intent == 'ai' else 'company-related announcements'} from {len(candidates)} eligible articles using semantic search. This is a relevance-ranked selection, not an exhaustive list.")
-        result['limitations'].append('Extractive overview from source lead sentences. Company matches can describe third-party news about the company, not only statements issued by it. AI eligibility uses explicit title/body terms or category; incidental mentions can qualify and implicit AI references may be missed.')
+        result['limitations'].append('Extractive overview from source lead sentences, or matching body passages when leads omit the requested topic/company. Company matches can describe third-party news about the company, not only statements issued by it. AI eligibility uses explicit title/body terms or category; incidental mentions can qualify and implicit AI references may be missed.')
     if not items and result['status'] == 'answered':
         result['status'] = 'no_matches'
     unique_sources = {s['article_id']: s for s in result['sources']}
@@ -268,9 +365,28 @@ class QueryEngine:
         self.embedder = None
         self.router = None
 
+    def _make_plan(self, question, records, **options):
+        """Bind current corpus slots and infer an operation from semantic features."""
+        catalog = {'companies': sorted({name for record in records.values() for name in
+                    record.companies + ([record.funding.company] if record.funding and record.funding.company else [])
+                    if normalize(name) not in GENERIC_TARGETS}),
+                   'locations': sorted({name for record in records.values() for name in record.locations} |
+                                       {'Bengaluru', 'Bangalore'})}
+        routing = {}
+        def route(text):
+            self.router = self.router or SemanticRouter(self.embedder)
+            slots = {key: list(value) for key, value in catalog.items()}
+            candidate = company_target(text)
+            if candidate and candidate not in slots['locations']:
+                slots['companies'].append(candidate)
+            routing.update(self.router.classify(text, entities=slots))
+            return routing
+        plan = plan_query(question, semantic_route=route, entity_catalog=catalog, **options)
+        return plan, routing
+
     def answer(self, question, **options):
-        # Validate explicit options before loading models. Routing is lazy and
-        # shares the already required, verified local article encoder.
+        # Validate basic options first. Every inferred operation is then chosen
+        # by the local semantic model; lexical slot checks never choose it.
         plan_query(question, **options)
         with writer_lock(self.root):
             self.embedder = self.embedder or LocalEmbedder(self.root / 'models/embeddings')
@@ -278,12 +394,7 @@ class QueryEngine:
             if state['config']['selection'] is not None:
                 raise ValueError('Query answers require the full corpus index, not a pilot selection')
             records, _ = load_inputs(self.root)
-            routing = {}
-            def route(text):
-                self.router = self.router or SemanticRouter(self.embedder)
-                routing.update(self.router.classify(text))
-                return routing['intent']
-            plan = plan_query(question, semantic_route=route, **options)
+            plan, routing = self._make_plan(question, records, **options)
             def retrieve(text, ids, count):
                 if not ids:
                     return []

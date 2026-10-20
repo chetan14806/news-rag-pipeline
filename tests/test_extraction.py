@@ -3,6 +3,7 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 import spacy
 from lxml import html
@@ -69,6 +70,48 @@ class ExtractionTests(unittest.TestCase):
         self.assertTrue(all(s in result.body for s in result.provenance['summary_sentences']))
         ArticleRecord.model_validate_json(result.model_dump_json())
 
+    def test_funding_deal_survives_persisted_extraction_and_query(self):
+        from newsrag.query_planner import plan_query
+        from newsrag.query_engine import answer_records
+        raw = fixture().replace(b'Seed Funding</h1>', b'Seed Funding Deal</h1>')
+        entry = self.save(raw)
+        summary = run_extraction(self.root, nlp=self.nlp, progress=lambda *args: None)
+        self.assertEqual((summary['written'], summary['accepted'], summary['failed']), (1, 1, 0))
+        record = ArticleRecord.model_validate_json((self.root / 'records' / f"{entry['id']}.json").read_bytes())
+        self.assertEqual((record.category, record.funding.amount, record.funding.round),
+                         ('funding', 250000000, 'Seed'))
+        plan = plan_query('Which startups raised seed funding?', intent='funding', as_of=record.published_at)
+        answer = answer_records(plan, {record.id: record}, None)
+        self.assertEqual([item['article_id'] for item in answer['items']], [record.id])
+        self.assertEqual(answer['items'][0]['funding']['investors'], ['Example Ventures'])
+
+    def test_extractor_revision_invalidates_cached_records(self):
+        entry = self.save(fixture())
+        with patch('newsrag.extraction.EXTRACTION_VERSION', 'before-deal-repair'):
+            run_extraction(self.root, nlp=self.nlp, progress=lambda *args: None)
+        current = run_extraction(self.root, nlp=self.nlp, progress=lambda *args: None)
+        errors = self.root / 'extraction/errors.jsonl'
+        self.assertEqual(current['failed'], 0, errors.read_text(encoding='utf-8') if errors.exists() else current)
+        self.assertEqual((current['written'], current['skipped']), (1, 0), current)
+        record = ArticleRecord.model_validate_json((self.root / 'records' / f"{entry['id']}.json").read_bytes())
+        self.assertEqual(record.provenance['extraction_version'], '2.0.8')
+
+    def test_body_only_amount_is_persisted_and_returned_by_funding_query(self):
+        from newsrag.query_planner import plan_query
+        from newsrag.query_engine import answer_records
+        raw = fixture().replace('Example Labs Raises ₹25 Crore in Seed Funding'.encode(),
+                                b'Example Labs Raises Seed Funding')
+        entry = self.save(raw)
+        result = run_extraction(self.root, nlp=self.nlp, progress=lambda *args: None)
+        self.assertEqual((result['written'], result['failed']), (1, 0), result)
+        record = ArticleRecord.model_validate_json((self.root / 'records' / f"{entry['id']}.json").read_bytes())
+        self.assertEqual((record.funding.amount, record.funding.currency, record.funding.amount_text),
+                         (250000000, 'INR', '₹25 crore'))
+        answer = answer_records(plan_query('Which startups raised funding and how much?', intent='funding',
+                                          as_of=record.published_at), {record.id: record}, None)
+        self.assertEqual(answer['items'][0]['funding']['amount'], '250000000')
+        self.assertIn('₹25 crore', answer['answer'])
+
     def test_body_headings_and_nested_blocks_do_not_merge_words(self):
         container = html.fromstring('<div>Lead paragraph.<h4>Revenue grows</h4>'
             'Company raised funding.<div>New paragraph with <b>inline emphasis</b>.</div>'
@@ -123,6 +166,24 @@ class ExtractionTests(unittest.TestCase):
         manifest = json.loads((self.root / 'extraction/manifest.json').read_text())
         self.assertEqual(manifest['records'], {})
         self.assertTrue(record_path.exists())  # Historical JSON does not imply current acceptance.
+
+    def test_limited_extraction_exposes_unprocessed_raw_pages(self):
+        first = self.save(fixture())
+        second_url = URL.replace('example.html', 'second.html')
+        second_raw = fixture().replace(URL.encode(), second_url.encode())
+        second = RawStore(self.root).save(second_url, Response(second_url, 200, {}, second_raw),
+                                         {'labels': []}, 'test')
+        result = run_extraction(self.root, limit=1, nlp=self.nlp, progress=lambda *a: None)
+        state = json.loads((self.root / 'extraction/manifest.json').read_text())
+        self.assertEqual(result['status'], 'incomplete')
+        self.assertFalse(state['complete_scan'])
+        self.assertEqual(state['pending_ids'], [second['id']])
+        result = run_extraction(self.root, nlp=self.nlp, progress=lambda *a: None)
+        state = json.loads((self.root / 'extraction/manifest.json').read_text())
+        self.assertEqual(result['accepted'], 2)
+        self.assertTrue(state['complete_scan'])
+        self.assertEqual(state['pending_ids'], [])
+        self.assertEqual(set(state['raw_inputs']), {first['id'], second['id']})
 
     def test_tampered_record_summary_is_recomputed(self):
         entry = self.save(fixture())

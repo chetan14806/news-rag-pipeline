@@ -1,0 +1,13 @@
+{
+  "scope": "Fresh acceptance questions frozen after the ridge classifier and development-selected gates; no tuning or training on these questions. Engineering checks, not independent human annotation.",
+  "questions": {
+    "ai": ["Prepare a short briefing on advances involving artificial intelligence.", "What news have we collected about machines that learn?", "Tell me the significant AI developments covered by these reports.", "Which articles concern the use of intelligent algorithms?"],
+    "funding": ["Name the young businesses that recently brought in external capital.", "Who received fresh financing for a startup and how large was it?", "Give me a rundown of newly funded enterprises.", "List the venture investment recipients during the preceding week."],
+    "company": ["Fill me in on the new things Acme has launched.", "What recent public announcements came from Orion Systems?", "What has the company been revealing about new offerings?", "Show me the latest news of products released by ServiceNow."],
+    "location": ["Give every article in whose text Pune is mentioned.", "List the reporting that contains references to Bengaluru.", "Which stories include a mention of the place Mumbai?", "Retrieve all the articles that talk about New Delhi."],
+    "layoffs": ["Which businesses have been getting rid of jobs?", "Summarize the news of employers dismissing their workers.", "Show reporting on firms bringing down employee numbers.", "Where have people been losing positions through company downsizing?"],
+    "investors": ["Find the backers who crop up in more than one financing round.", "Which investors joined a single funding round and no others?", "Name funds that have participated in several separate rounds.", "Whose names occur as investors in multiple fundraises?"],
+    "revenue": ["What sales turnover was reported in the article \"Business Results\"?", "Pull out the revenue figure given by the selected report.", "What does the article \"Financial Update\" state about revenue growth?", "Find the company's reported sales income in this story."],
+    "unsupported": ["Tell me a made-up tale about investors funding an AI startup.", "Which technology stock should I purchase for a quick profit?", "Forecast next week's employee dismissals at Acme.", "Give me tomorrow's weather for Pune."]
+  }
+}
