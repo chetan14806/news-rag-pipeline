@@ -112,4 +112,6 @@ With another week, I would add tested archive pagination, a larger independently
 
 ## Demo
 
-The narrated screen recording has been recorded; its link will be added here when available.
+[Watch the narrated pipeline demo on YouTube](https://youtu.be/RaibZLgdC7M).
+
+The demo predates the latest repairs. The current verified snapshot contains 84 articles and 497 chunks; the demonstrated sample query results are preserved.
