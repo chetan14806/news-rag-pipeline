@@ -10,7 +10,7 @@ Judgments are agent source/output review, not independent human annotation; a ch
 
 Corpus only. Reference time: 2026-10-17T12:00:00Z. All stored publication dates through the reference instant.
 
-Selected 5 AI stories from 15 eligible articles using semantic search. This is a relevance-ranked selection, not an exhaustive list.
+Selected 5 AI stories from 28 eligible articles using semantic search. This is a relevance-ranked selection, not an exhaustive list.
 
 - [AI Cracks the Code: OpenAI Publishes Landmark Math Breakthroughs](https://www.indianweb2.com/2026/10/ai-cracks-code-openai-publishes.html) — published 2026-10-07T18:10:00+00:00
   Source excerpt: OpenAI has built a very advanced AI system that can solve tough math problems.
@@ -33,7 +33,7 @@ Selected 5 AI stories from 15 eligible articles using semantic search. This is a
   Source excerpt: Based on exclusive LinkedIn data across employment growth, engagement, job interest, and attraction of top talent, the list offers professionals a view of companies gaining momentum and potential opportunities to explore in the country.
 
 Limits:
-- Extractive overview from source lead sentences. Company matches can describe third-party news about the company, not only statements issued by it. AI eligibility uses explicit title terms/category; synonyms or incidental AI mentions may be missed.
+- Extractive overview from source lead sentences. Company matches can describe third-party news about the company, not only statements issued by it. AI eligibility uses explicit title/body terms or category; incidental mentions can qualify and implicit AI references may be missed.
 
 Sources:
 - [AI Cracks the Code: OpenAI Publishes Landmark Math Breakthroughs](https://www.indianweb2.com/2026/10/ai-cracks-code-openai-publishes.html)
@@ -42,7 +42,7 @@ Sources:
 - [Unveilr AI Raises Pre-Seed at ₹16.7 Crore Valuation from Aviral Bhatnagar’s AJVC to Turn AI Search into Leads](https://www.indianweb2.com/2026/10/unveilr-ai-raises-pre-seed-at-167-crore.html)
 - [Zepto Tops LinkedIn’s 2026 India Startup List for Fourth Year, AI and Quick Commerce Drive Momentum](https://www.indianweb2.com/2026/10/zepto-tops-linkedins-2026-india-startup.html)
 
-**Correctness judgment:** Supported extractive selection: five AI-related stories from 15 eligible articles, with exact source excerpts. This is not exhaustive thematic synthesis; the startup-ranking story is only partly about AI. Publisher claims were not independently fact-checked.
+**Correctness judgment:** Supported extractive selection: five AI-related stories from 28 eligible articles, with exact source excerpts. Eligibility now includes body mentions; the selected five stories are unchanged. This is not exhaustive thematic synthesis; the startup-ranking story is only partly about AI. Publisher claims were not independently fact-checked.
 
 ## 2. Which startups raised funding in the last 7 days, and how much?
 
@@ -87,7 +87,7 @@ Selected 1 company-related announcements from 1 eligible articles using semantic
   Source excerpt: Specifically, AI Passport is a new authority layer that gives enterprises runtime control over what AI agents and Model Context Protocol (MCP) servers are authorized to do at every point in a multi-agent workflow.
 
 Limits:
-- Extractive overview from source lead sentences. Company matches can describe third-party news about the company, not only statements issued by it. AI eligibility uses explicit title terms/category; synonyms or incidental AI mentions may be missed.
+- Extractive overview from source lead sentences. Company matches can describe third-party news about the company, not only statements issued by it. AI eligibility uses explicit title/body terms or category; incidental mentions can qualify and implicit AI references may be missed.
 
 Sources:
 - [ServiceNow Launches AI Passport to Reinvent Enterprise AI Governance](https://www.indianweb2.com/2026/10/servicenow-launches-ai-passport-to.html)
@@ -241,4 +241,3 @@ Corpus only. Reference time: 2026-10-17T12:00:00Z. All stored publication dates 
 I cannot answer that from this stored news collection. This interface supports AI stories, funding, company announcements, location mentions, layoffs, repeated investors and article-specific revenue. It does not fetch live information.
 
 **Correctness judgment:** Correct refusal: no live Mumbai weather claim, source invention or network lookup.
-

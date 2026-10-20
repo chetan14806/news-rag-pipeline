@@ -44,6 +44,12 @@ def company_target(question):
         match = re.search(pattern, question, re.I)
         if match:
             target = trim_target(match.group(1))
+            # A topic noun phrase is not a company. Keep names such as Novus AI
+            # and AI Dynamics intact rather than globally prioritizing AI words.
+            if re.fullmatch(r'(?:ai|artificial intelligence|machine learning)\s+'
+                            r'(?:tools|technology|technologies|developments|research|news|stories)',
+                            normalize(target)):
+                continue
             if normalize(target) not in {'recent', 'latest', 'the', 'any', 'company', 'companies',
                                          'ai', 'artificial intelligence', 'machine learning'}:
                 return target or None
@@ -51,7 +57,7 @@ def company_target(question):
 
 
 def location_target(question):
-    match = re.search(r'(?:mention(?:s|ing)?|referr?ing to|refer(?:s)? to|references?(?: to)?|\bin)\s+(.+?)[.?]*$',
+    match = re.search(r'(?:mention(?:s|ing)?|referr?ing to|refer(?:s)? to|references?(?: to)?|\bnam(?:e|es|ing)|\bin)\s+(.+?)[.?]*$',
                       question, re.I)
     return trim_target(match.group(1)) if match else None
 
@@ -109,14 +115,16 @@ class QueryPlan(BaseModel):
         return self
 
 
-def plan_query(question, *, as_of=None, intent=None, company=None, location=None, title=None, since=None, before=None):
+def plan_query(question, *, as_of=None, intent=None, company=None, location=None, title=None, since=None, before=None,
+               semantic_route=None):
     now = as_of or datetime.now(timezone.utc)
     if now.tzinfo is None:
         raise ValueError('Reference time must have a timezone')
     now = now.astimezone(timezone.utc)
     if not question.strip():
         raise ValueError('Question cannot be empty')
-    q = normalize(question)
+    # Preserve negation before punctuation normalization splits "didn't".
+    q = normalize(re.sub(r"n['’]t\b", ' not', question, flags=re.I))
     inferred_company = company_target(question) if not company else company
     clarification = None
     funding_question = bool(re.search(r'\b(?:funding|funded|financed)\b|fundrais\w*|\brais(?:e|ed|es|ing)\b|capital rais', q) or
@@ -129,7 +137,10 @@ def plan_query(question, *, as_of=None, intent=None, company=None, location=None
                             re.search(r'\bwho\b.*\b(?:backed|funded|financed|invested in)\b', q))
     investor_question = bool(investor_subject and REPEAT_TERMS.search(q) and not startup_subject)
     if intent is None:
-        if re.search(r'\b(weather|temperature|rain|raining)\b', q):
+        if re.search(r'\b(weather|temperature|rain|raining)\b', q) or re.search(
+                r'\b(?:poem|joke)\b|^(?:(?:please|can you|could you)\s+)?predict\b|'
+                r'\bshould i\b|\bhow (?:do|can|to|does)\b|'
+                r'\bexplain (?:how|why)\b', q):
             intent = 'unsupported'
         elif re.search(r'\b(revenue|revenues|turnover|sales figures)\b', q):
             intent = 'revenue'
@@ -153,7 +164,11 @@ def plan_query(question, *, as_of=None, intent=None, company=None, location=None
         elif company or re.search(r'announc|company updates|recent updates|product launches|product releases|latest.*\bfrom\b|news (?:on|about)', q):
             intent = 'company'
         else:
-            intent = 'unsupported'
+            # Only unresolved wording reaches the local semantic fallback.
+            # Explicit flags and established arithmetic/ambiguity rules win.
+            # Similarity does not safely implement complements/negated filters.
+            intent = (semantic_route(question) if semantic_route and not
+                      re.search(r'\b(?:not|never|without|except|excluding)\b', q) else 'unsupported')
     if intent == 'company' and not company:
         company = inferred_company
     if intent == 'investors':

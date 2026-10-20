@@ -7,6 +7,7 @@ from newsrag.embeddings import LocalEmbedder
 from newsrag.indexing import checked_index, load_inputs, validate_vectors
 from newsrag.query_planner import LAYOFF_TERMS, normalize, plan_query
 from newsrag.storage import atomic_json, utc_now, writer_lock
+from newsrag.semantic_router import SemanticRouter
 
 ALIASES = {'bengaluru': ['Bengaluru', 'Bangalore'], 'bangalore': ['Bengaluru', 'Bangalore'],
            'ge aerospace': ['GE Aerospace'], 'servicenow': ['ServiceNow'],
@@ -229,7 +230,7 @@ def answer_records(plan, records, retrieve):
                        (mentions(r.body[:800], plan.company) and re.search(r'announc|launch|introduc|unveil', r.body[:800], re.I))]
             candidates = primary
         else:
-            candidates = [r for r in available if AI.search(r.title) or r.category == 'AI']
+            candidates = [r for r in available if AI.search(r.title) or AI.search(r.body) or r.category == 'AI']
         hits = retrieve(plan.question, [r.id for r in candidates], 50)
         result['retrieval'] = hits
         order = list(dict.fromkeys(h['metadata']['article_id'] for h in hits))
@@ -238,7 +239,7 @@ def answer_records(plan, records, retrieve):
             quotes = record.provenance['summary_sentences'][:2]
             items.append(base_item(record, quotes))
         lines.append(f"Selected {len(items)} {'AI stories' if plan.intent == 'ai' else 'company-related announcements'} from {len(candidates)} eligible articles using semantic search. This is a relevance-ranked selection, not an exhaustive list.")
-        result['limitations'].append('Extractive overview from source lead sentences. Company matches can describe third-party news about the company, not only statements issued by it. AI eligibility uses explicit title terms/category; synonyms or incidental AI mentions may be missed.')
+        result['limitations'].append('Extractive overview from source lead sentences. Company matches can describe third-party news about the company, not only statements issued by it. AI eligibility uses explicit title/body terms or category; incidental mentions can qualify and implicit AI references may be missed.')
     if not items and result['status'] == 'answered':
         result['status'] = 'no_matches'
     unique_sources = {s['article_id']: s for s in result['sources']}
@@ -265,15 +266,24 @@ class QueryEngine:
         self.root = Path(root)
         self.folder = Path(index_dir) if index_dir else self.root / 'index'
         self.embedder = None
+        self.router = None
 
     def answer(self, question, **options):
-        plan = plan_query(question, **options)
+        # Validate explicit options before loading models. Routing is lazy and
+        # shares the already required, verified local article encoder.
+        plan_query(question, **options)
         with writer_lock(self.root):
             self.embedder = self.embedder or LocalEmbedder(self.root / 'models/embeddings')
             collection, state = checked_index(self.root, self.folder, self.embedder)
             if state['config']['selection'] is not None:
                 raise ValueError('Query answers require the full corpus index, not a pilot selection')
             records, _ = load_inputs(self.root)
+            routing = {}
+            def route(text):
+                self.router = self.router or SemanticRouter(self.embedder)
+                routing.update(self.router.classify(text))
+                return routing['intent']
+            plan = plan_query(question, semantic_route=route, **options)
             def retrieve(text, ids, count):
                 if not ids:
                     return []
@@ -284,6 +294,8 @@ class QueryEngine:
                          'metadata': found['metadatas'][0][i], 'cosine_distance': found['distances'][0][i]}
                         for i, ident in enumerate(found['ids'][0])]
             result = answer_records(plan, records, retrieve)
+            if routing:
+                result['routing'] = routing
             result['index_state_run'] = state['run_id']
             result['answered_at'] = utc_now()
             run_id = result['answered_at'].replace(':', '').replace('.', '').replace('+', '-')
